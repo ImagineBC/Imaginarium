@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imaginarium — Powered by ImagineBC, Inc.</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <meta name="description" content="The Imaginarium is a living digital town where your attention earns real money. Watch ads, complete surveys, explore 33+ buildings, cash out through M-Pesa, Shoprite, and Airtel.">
+    <!-- Open Graph — UPDATE og:url and og:image with final domain when deployed -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://YOUR-DOMAIN-HERE.com/">
+    <meta property="og:title" content="Imaginarium — The Platform Where Your Time Has Value">
+    <meta property="og:description" content="A living digital town where members earn real money for their attention and data. 200K+ verified members across Africa.">
+    <meta property="og:image" content="https://YOUR-DOMAIN-HERE.com/images/hero-illustration.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Imaginarium">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Imaginarium — The Platform Where Your Time Has Value">
+    <meta name="twitter:description" content="A living digital town where your attention earns real money. 200K+ verified members across Africa.">
+    <meta name="twitter:image" content="https://YOUR-DOMAIN-HERE.com/images/hero-illustration.png">
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#0a0e1a">
+    <link rel="canonical" href="https://YOUR-DOMAIN-HERE.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & TOKENS === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1420;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1a2340;
+            --text-primary: #f0f2f5;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-teal: #56AF9B;
+            --accent-gold: #F39C12;
+            --accent-blue: #4A90E2;
+            --accent-red: #E74C3C;
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-accent: rgba(255,255,255,0.1);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-glow-teal: 0 0 48px rgba(86,175,155,0.2);
+            --shadow-glow-gold: 0 0 48px rgba(243,156,18,0.2);
+            --shadow-glow-blue: 0 0 48px rgba(74,144,226,0.2);
+            --shadow-glow-red: 0 0 48px rgba(231,76,60,0.2);
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === TYPOGRAPHY === */
+        .heading-display { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; }
+        .heading-xl { font-size: clamp(2.8rem, 6vw, 4.8rem); }
+        .heading-lg { font-size: clamp(2rem, 4vw, 3.2rem); }
+        .heading-md { font-size: clamp(1.5rem, 3vw, 2rem); }
+        .text-lg { font-size: 1.2rem; line-height: 1.7; }
+        .text-muted { color: var(--text-secondary); }
+
+        /* === LAYOUT === */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 140px 0; position: relative; }
+
+        /* === SCROLL REVEAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+        }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d4 { transition-delay: 0.4s; }
+        .reveal-d5 { transition-delay: 0.5s; }
+
+        /* === NAVIGATION === */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 14, 26, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s var(--ease);
+        }
+        .nav.scrolled {
+            padding: 12px 0;
+            background: rgba(10, 14, 26, 0.92);
+            border-bottom-color: var(--border-subtle);
+        }
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); }
+        .nav-brand img { width: 38px; height: 38px; border-radius: 10px; }
+        .nav-brand-text { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; }
+        .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+            font-weight: 500; transition: color 0.3s; letter-spacing: 0.01em;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-cta {
+            background: var(--accent-teal) !important; color: white !important;
+            padding: 10px 24px; border-radius: 100px; font-weight: 600;
+            transition: all 0.3s var(--ease);
+        }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-glow-teal); }
+        .nav-toggle {
+            display: none; background: none; border: none;
+            color: var(--text-primary); font-size: 1.5rem; cursor: pointer;
+            padding: 12px; min-width: 48px; min-height: 48px;
+            display: none; align-items: center; justify-content: center;
+        }
+
+        /* === MOBILE NAV === */
+        .nav-links.show {
+            display: flex; flex-direction: column; position: absolute;
+            top: 100%; left: 0; right: 0;
+            background: rgba(10,14,26,0.98);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 16px 24px 24px; gap: 4px;
+            border-bottom: 1px solid var(--border-subtle);
+            animation: navSlideIn 0.3s var(--ease);
+        }
+        @keyframes navSlideIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: none; }
+        }
+        .nav-links.show li { list-style: none; }
+        .nav-links.show a {
+            display: block; padding: 14px 16px; border-radius: var(--radius-sm);
+            font-size: 1rem; transition: background 0.2s;
+        }
+        .nav-links.show a:hover { background: rgba(255,255,255,0.04); }
+        .nav-links.show .nav-cta {
+            text-align: center; margin-top: 8px;
+        }
+
+        /* === HERO === */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; padding: 100px 0 80px;
+        }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; }
+        .hero-bg-art {
+            position: absolute; inset: 0;
+            background-image: url('images/hero-illustration.png');
+            background-size: cover; background-position: center 60%;
+            background-repeat: no-repeat;
+            animation: heroZoom 30s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.06); }
+        }
+        .hero-bg-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background:
+                linear-gradient(180deg, rgba(10,14,26,0.5) 0%, rgba(10,14,26,0.35) 30%, rgba(10,14,26,0.7) 65%, rgba(10,14,26,0.98) 100%),
+                radial-gradient(ellipse 60% 40% at 50% 70%, rgba(86,175,155,0.06) 0%, transparent 70%);
+        }
+        .hero-content {
+            position: relative; z-index: 2; text-align: center;
+            max-width: 860px; padding: 0 24px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(86,175,155,0.08); border: 1px solid rgba(86,175,155,0.2);
+            padding: 8px 20px; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 600; color: var(--accent-teal);
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 36px;
+        }
+        .hero-badge-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--accent-teal); animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .hero-title { margin-bottom: 28px; }
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent-teal), #3ba5d6, var(--accent-teal));
+            background-size: 200% 100%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+        @keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .hero-subtitle { color: var(--text-secondary); max-width: 620px; margin: 0 auto 44px; font-size: 1.15rem; line-height: 1.75; }
+        .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 15px 34px; border-radius: 100px; font-size: 0.95rem;
+            font-weight: 600; text-decoration: none; cursor: pointer; border: none;
+            transition: all 0.35s var(--ease); position: relative; overflow: hidden;
+        }
+        .btn-primary { background: var(--accent-teal); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow-teal); }
+        .btn-secondary { background: rgba(255,255,255,0.06); color: var(--text-primary); border: 1px solid var(--border-accent); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .btn-teal { background: var(--accent-teal); color: white; }
+        .btn-teal:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow-teal); }
+        .btn-gold { background: var(--accent-gold); color: white; }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow-gold); }
+        .btn-blue { background: var(--accent-blue); color: white; }
+        .btn-blue:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow-blue); }
+        .btn-red { background: var(--accent-red); color: white; }
+        .btn-red:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow-red); }
+        .btn-sm { padding: 10px 22px; font-size: 0.85rem; }
+        .btn-outline { background: transparent; border: 1px solid var(--border-accent); color: var(--text-secondary); }
+        .btn-outline:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
+
+        /* === SOCIAL PROOF === */
+        .social-proof {
+            padding: 56px 0; border-bottom: 1px solid var(--border-subtle);
+            background: rgba(15,20,32,0.5);
+        }
+        .social-proof-inner {
+            text-align: center; color: var(--text-muted); font-size: 0.85rem;
+            letter-spacing: 0.04em;
+        }
+        .social-proof-label { font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem; margin-bottom: 24px; color: var(--text-muted); }
+        .social-proof-partners {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+            align-items: center;
+        }
+        .social-proof-partner {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 8px; padding: 16px 20px; min-width: 130px;
+            border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);
+            background: rgba(255,255,255,0.02);
+            transition: all 0.3s var(--ease);
+        }
+        .social-proof-partner:hover { border-color: rgba(86,175,155,0.2); background: rgba(255,255,255,0.04); }
+        .partner-logo {
+            width: 100%; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .partner-logo img { max-height: 36px; max-width: 100%; object-fit: contain; filter: grayscale(1) brightness(1.8); opacity: 0.7; transition: all 0.3s; }
+        .social-proof-partner:hover .partner-logo img { filter: grayscale(0) brightness(1); opacity: 1; }
+        .partner-logo-placeholder {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--text-muted);
+            border: 1px dashed rgba(255,255,255,0.15); border-radius: 4px;
+            padding: 6px 10px; width: 100%; text-align: center;
+        }
+        .partner-name { font-size: 0.78rem; font-weight: 500; color: var(--text-secondary); }
+        .partner-detail { font-size: 0.65rem; color: var(--text-muted); }
+
+        /* === EYEBROW === */
+        .eyebrow {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--accent-teal); margin-bottom: 20px;
+        }
+
+        /* === MANIFESTO === */
+        .manifesto { text-align: center; }
+        .manifesto-statement { max-width: 780px; margin: 0 auto 56px; }
+        .manifesto-statement em { font-style: italic; color: var(--accent-red); }
+        .manifesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 880px; margin: 0 auto; }
+        .manifesto-card { padding: 36px; border-radius: var(--radius-md); text-align: left; }
+        .manifesto-card.old { background: rgba(231,76,60,0.04); border: 1px solid rgba(231,76,60,0.12); }
+        .manifesto-card.new { background: rgba(86,175,155,0.04); border: 1px solid rgba(86,175,155,0.12); }
+        .manifesto-card-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; margin-bottom: 20px;
+        }
+        .manifesto-card.old .manifesto-card-label { color: var(--accent-red); }
+        .manifesto-card.new .manifesto-card-label { color: var(--accent-teal); }
+        .manifesto-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+        .manifesto-card li {
+            display: flex; align-items: flex-start; gap: 12px;
+            color: var(--text-secondary); font-size: 0.92rem; line-height: 1.55;
+        }
+        .manifesto-card li .icon { flex-shrink: 0; margin-top: 2px; font-size: 1rem; }
+        .manifesto-card.old li .icon { color: var(--accent-red); }
+        .manifesto-card.new li .icon { color: var(--accent-teal); }
+
+        /* === SECTION DIVIDER === */
+        .section-glow {
+            height: 1px; max-width: 600px; margin: 0 auto;
+            background: linear-gradient(90deg, transparent, rgba(86,175,155,0.2), transparent);
+        }
+
+        /* === HOW IT WORKS === */
+        .how-it-works { text-align: center; background: var(--bg-secondary); }
+        .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 64px; }
+        .how-step {
+            position: relative; padding: 36px 24px; border-radius: var(--radius-md);
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            transition: all 0.4s var(--ease);
+        }
+        .how-step:hover { border-color: rgba(86,175,155,0.3); transform: translateY(-6px); box-shadow: var(--shadow-card); }
+        .how-step-number {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(86,175,155,0.15), rgba(74,144,226,0.15));
+            color: var(--accent-teal); display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.1rem; margin: 0 auto 18px;
+        }
+        .how-step-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 10px; }
+        .how-step-text { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; }
+        .how-step:not(:last-child)::after {
+            content: '\2192'; position: absolute; right: -15px; top: 50%;
+            transform: translateY(-50%); color: var(--text-muted); font-size: 1rem; z-index: 1; opacity: 0.4;
+        }
+
+        /* === AUDIENCE TABS === */
+        .audience-section { background: var(--bg-primary); }
+        .audience-header { text-align: center; margin-bottom: 48px; }
+        .audience-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 56px; flex-wrap: wrap; }
+        .audience-tab {
+            padding: 12px 26px; border-radius: 100px; font-size: 0.9rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border-accent); background: transparent;
+            color: var(--text-secondary); transition: all 0.3s var(--ease);
+        }
+        .audience-tab:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); }
+        .audience-tab.active { border-color: transparent; }
+        .audience-tab[data-tab="members"].active { background: rgba(86,175,155,0.12); color: var(--accent-teal); border-color: rgba(86,175,155,0.25); }
+        .audience-tab[data-tab="brands"].active { background: rgba(243,156,18,0.12); color: var(--accent-gold); border-color: rgba(243,156,18,0.25); }
+        .audience-tab[data-tab="creators"].active { background: rgba(74,144,226,0.12); color: var(--accent-blue); border-color: rgba(74,144,226,0.25); }
+        .audience-tab[data-tab="investors"].active { background: rgba(231,76,60,0.12); color: var(--accent-red); border-color: rgba(231,76,60,0.25); }
+
+        .audience-panel { display: none; animation: panelIn 0.5s var(--ease); }
+        .audience-panel.active { display: block; }
+        @keyframes panelIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+        .audience-panel-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+        .audience-panel-tagline {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; margin-bottom: 14px;
+        }
+        .audience-panel[data-panel="members"] .audience-panel-tagline { color: var(--accent-teal); }
+        .audience-panel[data-panel="brands"] .audience-panel-tagline { color: var(--accent-gold); }
+        .audience-panel[data-panel="creators"] .audience-panel-tagline { color: var(--accent-blue); }
+        .audience-panel[data-panel="investors"] .audience-panel-tagline { color: var(--accent-red); }
+
+        .audience-panel-title {
+            font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800;
+            line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.02em;
+        }
+        .audience-panel-desc { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 28px; }
+        .audience-features { display: flex; flex-direction: column; gap: 18px; margin-bottom: 32px; }
+        .audience-feature { display: flex; gap: 14px; align-items: flex-start; }
+        .audience-feature-icon {
+            flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .audience-panel[data-panel="members"] .audience-feature-icon { background: rgba(86,175,155,0.1); color: var(--accent-teal); }
+        .audience-panel[data-panel="brands"] .audience-feature-icon { background: rgba(243,156,18,0.1); color: var(--accent-gold); }
+        .audience-panel[data-panel="creators"] .audience-feature-icon { background: rgba(74,144,226,0.1); color: var(--accent-blue); }
+        .audience-panel[data-panel="investors"] .audience-feature-icon { background: rgba(231,76,60,0.1); color: var(--accent-red); }
+        .audience-feature-text h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+        .audience-feature-text p { color: var(--text-secondary); font-size: 0.87rem; line-height: 1.5; }
+
+        .audience-panel-visual {
+            position: relative; border-radius: var(--radius-lg); overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        .audience-panel-visual img { width: 100%; height: 100%; object-fit: cover; }
+        .audience-panel[data-panel="members"] .audience-panel-visual { border: 1px solid rgba(86,175,155,0.12); }
+        .audience-panel[data-panel="brands"] .audience-panel-visual { border: 1px solid rgba(243,156,18,0.12); }
+        .audience-panel[data-panel="creators"] .audience-panel-visual { border: 1px solid rgba(74,144,226,0.12); }
+        .audience-panel[data-panel="investors"] .audience-panel-visual { border: 1px solid rgba(231,76,60,0.12); }
+
+        /* === TOWN BUILDINGS === */
+        .town-strip { background: var(--bg-secondary); }
+        .town-header { text-align: center; margin-bottom: 56px; }
+        .building-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+        .building-card {
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md); overflow: hidden; text-align: center;
+            transition: all 0.4s var(--ease); position: relative;
+        }
+        .building-card:hover { border-color: rgba(86,175,155,0.25); transform: translateY(-5px); box-shadow: var(--shadow-card); }
+        .building-card-img {
+            width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+            display: block; border-bottom: 1px solid var(--border-subtle);
+            max-height: 160px;
+            background: linear-gradient(135deg, rgba(86,175,155,0.08) 0%, rgba(74,144,226,0.08) 100%);
+        }
+        .building-card-img[alt]::after {
+            content: attr(alt);
+            display: flex; align-items: center; justify-content: center;
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(86,175,155,0.1) 0%, rgba(74,144,226,0.1) 100%);
+            color: var(--text-muted); font-size: 0.85rem; font-weight: 500;
+        }
+        .building-card-info { padding: 12px 16px; }
+        .building-card-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+        .building-card-swahili { font-size: 0.8rem; color: var(--accent-teal); font-style: italic; }
+        .building-card-type { font-size: 0.75rem; color: var(--text-muted); margin-top: 6px; }
+        .building-more {
+            text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.9rem;
+        }
+        .building-more-list {
+            color: var(--text-secondary); margin-top: 8px; font-size: 0.85rem; line-height: 1.8;
+        }
+
+        /* === STATS BAR === */
+        .stats-bar { padding: 80px 0; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+        .stat-number {
+            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800; line-height: 1.2;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-label { color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px; }
+
+        /* === TRACTION MAP === */
+        .traction { background: var(--bg-secondary); }
+        .traction-header { text-align: center; margin-bottom: 64px; }
+        .traction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+        .traction-map {
+            position: relative; aspect-ratio: 1/1; border-radius: var(--radius-lg);
+            overflow: hidden; border: 1px solid rgba(86,175,155,0.1);
+        }
+        .traction-map img { width: 100%; height: 100%; object-fit: cover; }
+        .map-label { position: absolute; font-family: 'Inter', sans-serif; text-align: center; pointer-events: none; }
+        .map-label-country { font-size: 0.8rem; font-weight: 700; color: #fff; letter-spacing: 0.08em; text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5); }
+        .map-label-status {
+            font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 3px 10px; border-radius: 4px; margin-top: 4px; display: inline-block;
+        }
+        .map-label-status.live { background: rgba(86,175,155,0.4); color: #7ddfca; }
+        .map-label-status.launching { background: rgba(243,156,18,0.35); color: #fbc56d; }
+        .map-label-status.launching-blue { background: rgba(74,144,226,0.35); color: #8bbcf0; }
+
+        .traction-countries { display: flex; flex-direction: column; gap: 20px; }
+        .traction-country {
+            padding: 24px; border-radius: var(--radius-md);
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            transition: all 0.3s var(--ease);
+        }
+        .traction-country:hover { border-color: rgba(86,175,155,0.2); }
+        .traction-country-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .traction-country-flag { font-size: 1.4rem; }
+        .traction-country-name { font-weight: 700; font-size: 1.05rem; }
+        .traction-country-status {
+            font-size: 0.75rem; font-weight: 600; padding: 3px 10px;
+            border-radius: 100px; margin-left: auto;
+        }
+        .status-live { background: rgba(86,175,155,0.12); color: var(--accent-teal); }
+        .status-launching { background: rgba(243,156,18,0.12); color: var(--accent-gold); }
+        .traction-country-detail { color: var(--text-secondary); font-size: 0.87rem; line-height: 1.55; }
+        .traction-stat { font-weight: 800; color: var(--text-primary); }
+
+        /* === SPONSORSHIP === */
+        .sponsor-preview { text-align: center; }
+        .sponsor-preview-header { margin-bottom: 56px; }
+        .sponsor-tiers {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            max-width: 960px; margin: 0 auto;
+        }
+        .sponsor-tier {
+            padding: 36px 28px; border-radius: var(--radius-md);
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            text-align: left; transition: all 0.4s var(--ease);
+        }
+        .sponsor-tier:hover { border-color: rgba(243,156,18,0.3); transform: translateY(-5px); box-shadow: var(--shadow-glow-gold); }
+        .sponsor-tier-icon { font-size: 2rem; margin-bottom: 14px; }
+        .sponsor-tier-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; }
+        .sponsor-tier-desc { color: var(--text-secondary); font-size: 0.87rem; line-height: 1.6; }
+        .sponsor-visual { margin-top: 56px; position: relative; text-align: center; }
+        .sponsor-visual img { width: 100%; max-width: 900px; border-radius: var(--radius-lg); }
+        .sponsor-visual-caption {
+            margin-top: 20px; font-size: 0.85rem; color: var(--text-muted);
+            letter-spacing: 0.04em;
+        }
+
+        /* === FINAL CTA === */
+        .final-cta {
+            text-align: center; position: relative; overflow: hidden;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, #0f1832 50%, var(--bg-primary) 100%);
+        }
+        .final-cta::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(86,175,155,0.06) 0%, transparent 70%);
+        }
+        .final-cta-content { position: relative; z-index: 1; }
+        .final-cta-title { margin-bottom: 20px; }
+        .final-cta-subtitle { color: var(--text-secondary); max-width: 520px; margin: 0 auto 40px; font-size: 1.1rem; }
+        .final-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        /* === CONTACT FORM === */
+        .join-form-card {
+            max-width: 520px; margin: 0 auto; text-align: left;
+            background: var(--bg-card); border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg); padding: 36px 32px;
+            box-shadow: var(--shadow-card);
+        }
+        .join-role-tabs {
+            display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap;
+        }
+        .join-role-tab {
+            flex: 1; min-width: 0; padding: 10px 8px; border-radius: 10px;
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            border: 1px solid var(--border-accent); background: transparent;
+            color: var(--text-secondary); transition: all 0.25s var(--ease);
+            text-align: center;
+        }
+        .join-role-tab:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); }
+        .join-role-tab.active { border-color: transparent; }
+        .join-role-tab[data-role="member"].active { background: rgba(86,175,155,0.12); color: var(--accent-teal); border-color: rgba(86,175,155,0.25); }
+        .join-role-tab[data-role="brand"].active { background: rgba(243,156,18,0.12); color: var(--accent-gold); border-color: rgba(243,156,18,0.25); }
+        .join-role-tab[data-role="creator"].active { background: rgba(74,144,226,0.12); color: var(--accent-blue); border-color: rgba(74,144,226,0.25); }
+        .join-role-tab[data-role="investor"].active { background: rgba(231,76,60,0.12); color: var(--accent-red); border-color: rgba(231,76,60,0.25); }
+        .join-field { margin-bottom: 18px; }
+        .join-field label {
+            display: block; font-size: 0.8rem; font-weight: 600;
+            color: var(--text-muted); margin-bottom: 6px;
+            letter-spacing: 0.04em;
+        }
+        .join-field input, .join-field textarea {
+            width: 100%; padding: 13px 16px; border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border-accent);
+            color: var(--text-primary); font-family: inherit; font-size: 0.92rem;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            outline: none;
+        }
+        .join-field input::placeholder, .join-field textarea::placeholder { color: var(--text-muted); }
+        .join-field input:focus, .join-field textarea:focus {
+            border-color: rgba(86,175,155,0.5);
+            box-shadow: 0 0 0 3px rgba(86,175,155,0.08);
+        }
+        .join-field textarea { resize: vertical; min-height: 80px; }
+        .join-submit {
+            width: 100%; padding: 14px; border-radius: 100px;
+            font-size: 0.95rem; font-weight: 700; cursor: pointer;
+            border: none; color: white; transition: all 0.3s var(--ease);
+        }
+        .join-submit:hover { transform: translateY(-2px); }
+        .join-submit[data-accent="teal"] { background: var(--accent-teal); }
+        .join-submit[data-accent="teal"]:hover { box-shadow: var(--shadow-glow-teal); }
+        .join-submit[data-accent="gold"] { background: var(--accent-gold); }
+        .join-submit[data-accent="gold"]:hover { box-shadow: var(--shadow-glow-gold); }
+        .join-submit[data-accent="blue"] { background: var(--accent-blue); }
+        .join-submit[data-accent="blue"]:hover { box-shadow: var(--shadow-glow-blue); }
+        .join-submit[data-accent="red"] { background: var(--accent-red); }
+        .join-submit[data-accent="red"]:hover { box-shadow: var(--shadow-glow-red); }
+        .join-success {
+            display: none; text-align: center; padding: 32px 24px;
+        }
+        .join-success.show { display: block; }
+        .join-success-icon { font-size: 3rem; margin-bottom: 16px; }
+        .join-success-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; margin-bottom: 8px; }
+        .join-success-text { color: var(--text-secondary); font-size: 0.92rem; }
+
+        /* === FOOTER === */
+        .footer { padding: 64px 0 28px; border-top: 1px solid var(--border-subtle); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand-desc { color: var(--text-secondary); font-size: 0.87rem; line-height: 1.6; margin-top: 14px; }
+        .footer-powered { color: var(--text-muted); font-size: 0.78rem; margin-top: 8px; }
+        .footer-col-title {
+            font-weight: 700; font-size: 0.78rem; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.87rem; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--text-primary); }
+        .footer-bottom {
+            border-top: 1px solid var(--border-subtle); padding-top: 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--text-muted); font-size: 0.78rem;
+        }
+
+        /* === BUILDING MODAL === */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 2000;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.35s var(--ease), visibility 0.35s;
+            padding: 24px;
+        }
+        .modal-overlay.open { opacity: 1; visibility: visible; }
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            max-width: 640px; width: 100%;
+            max-height: 85vh; overflow-y: auto;
+            transform: translateY(24px) scale(0.97);
+            transition: transform 0.4s var(--ease);
+            box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+        }
+        .modal-overlay.open .modal-card { transform: none; }
+        .modal-card::-webkit-scrollbar { width: 6px; }
+        .modal-card::-webkit-scrollbar-track { background: transparent; }
+        .modal-card::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .modal-hero {
+            position: relative; width: 100%; aspect-ratio: 16/9;
+            overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+        .modal-hero img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .modal-hero-placeholder {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem;
+            background: linear-gradient(135deg, rgba(86,175,155,0.15) 0%, rgba(74,144,226,0.15) 100%);
+        }
+        .modal-hero-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 24px 28px 20px;
+            background: linear-gradient(180deg, transparent 0%, rgba(10,14,26,0.85) 100%);
+        }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px; z-index: 1;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-primary); font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.25s;
+            backdrop-filter: blur(8px);
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
+        .modal-district-badge {
+            display: inline-block; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 4px 12px; border-radius: 100px;
+            background: rgba(86,175,155,0.15); color: var(--accent-teal);
+            margin-bottom: 8px;
+        }
+        .modal-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.6rem; color: var(--text-primary); }
+        .modal-swahili { font-size: 0.9rem; color: var(--accent-teal); font-style: italic; margin-top: 2px; }
+        .modal-body { padding: 28px; }
+        .modal-desc {
+            color: var(--text-secondary); font-size: 0.95rem; line-height: 1.75;
+            margin-bottom: 24px;
+        }
+        .modal-features-title {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+        }
+        .modal-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .modal-features li {
+            display: flex; align-items: flex-start; gap: 12px;
+            color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55;
+        }
+        .modal-features li .mf-icon {
+            flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
+            background: rgba(86,175,155,0.1); color: var(--accent-teal);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; margin-top: 1px;
+        }
+        .modal-status {
+            margin-top: 24px; padding-top: 20px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; color: var(--text-muted);
+        }
+        .modal-status-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+        }
+        .modal-status-dot.live { background: var(--accent-teal); }
+        .modal-status-dot.coming-soon { background: var(--accent-gold); }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .how-steps { grid-template-columns: repeat(2, 1fr); }
+            .how-step:not(:last-child)::after { display: none; }
+            .building-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            .section { padding: 100px 0; }
+            .manifesto-grid { grid-template-columns: 1fr; }
+            .audience-panel-inner { grid-template-columns: 1fr; gap: 36px; }
+            .audience-panel-visual { order: -1; }
+            .how-steps { grid-template-columns: 1fr; }
+            .traction-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .sponsor-tiers { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .building-grid { grid-template-columns: 1fr 1fr; }
+            .social-proof-partners { gap: 10px; }
+            .social-proof-partner { min-width: 100px; padding: 12px 14px; }
+            .final-cta-buttons { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 480px) {
+            .section { padding: 80px 0; }
+            .building-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero { padding: 80px 0 60px; }
+            .join-form-card { padding: 24px 20px; }
+            .join-role-tabs { gap: 4px; }
+            .join-role-tab { padding: 10px 6px; font-size: 0.75rem; }
+            .modal-overlay { padding: 12px; }
+            .modal-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <img src="images/logo.png" alt="Imaginarium">
+                <span class="nav-brand-text">Imaginarium</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#audiences">Who It's For</a></li>
+                <li><a href="#town">The Town</a></li>
+                <li><a href="#traction">Where We Are</a></li>
+                <li><a href="#join" class="nav-cta">Join the Town</a></li>
+            </ul>
+            <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-art"></div>
+            <div class="hero-bg-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Live in South Africa &bull; Expanding Across Africa
+            </div>
+            <h1 class="hero-title heading-display heading-xl">
+                The Platform Where<br><span class="highlight">Your Time Has Value</span>
+            </h1>
+            <p class="hero-subtitle">
+                The first platform that compensates you for your attention and data. Watch ads, complete surveys, explore a living town &mdash; earn real money you can cash out.
+            </p>
+            <div class="hero-ctas">
+                <a href="#join" class="btn btn-primary">Join the Town</a>
+                <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <div class="social-proof">
+        <div class="container">
+            <div class="social-proof-inner">
+                <div class="social-proof-label">Partnered &amp; Launching With</div>
+                <div class="social-proof-partners">
+                    <div class="social-proof-partner">
+                        <div class="partner-logo">
+                            <!-- IMAGE HERE: Kenya Forestry Service logo (images/partners/kfs.png) -->
+                            <div class="partner-logo-placeholder">Logo</div>
+                        </div>
+                        <span class="partner-name">Kenya Forestry Service</span>
+                    </div>
+                    <div class="social-proof-partner">
+                        <div class="partner-logo">
+                            <!-- IMAGE HERE: T2 Mobile logo (images/partners/t2-mobile.png) -->
+                            <div class="partner-logo-placeholder">Logo</div>
+                        </div>
+                        <span class="partner-name">T2 Mobile</span>
+                        <span class="partner-detail">4M+ users</span>
+                    </div>
+                    <div class="social-proof-partner">
+                        <div class="partner-logo">
+                            <!-- IMAGE HERE: Signature Bank logo (images/partners/signature-bank.png) -->
+                            <div class="partner-logo-placeholder">Logo</div>
+                        </div>
+                        <span class="partner-name">Signature Bank</span>
+                    </div>
+                    <div class="social-proof-partner">
+                        <div class="partner-logo">
+                            <!-- IMAGE HERE: RCCG logo (images/partners/rccg.png) -->
+                            <div class="partner-logo-placeholder">Logo</div>
+                        </div>
+                        <span class="partner-name">RCCG</span>
+                        <span class="partner-detail">5M members</span>
+                    </div>
+                    <div class="social-proof-partner">
+                        <div class="partner-logo">
+                            <!-- IMAGE HERE: Shoprite logo (images/partners/shoprite.png) -->
+                            <div class="partner-logo-placeholder">Logo</div>
+                        </div>
+                        <span class="partner-name">Shoprite</span>
+                    </div>
+                    <div class="social-proof-partner">
+                        <div class="partner-logo">
+                            <!-- IMAGE HERE: M-Pesa logo (images/partners/m-pesa.png) -->
+                            <div class="partner-logo-placeholder">Logo</div>
+                        </div>
+                        <span class="partner-name">M-Pesa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MANIFESTO -->
+    <section class="section manifesto">
+        <div class="container">
+            <div class="eyebrow reveal">The Shift</div>
+            <h2 class="heading-display heading-lg manifesto-statement reveal reveal-d1">
+                On every other platform, <em>you</em> are the product.<br>
+                Inside the Imaginarium, you're an equity player.
+            </h2>
+            <div class="manifesto-grid">
+                <div class="manifesto-card old reveal reveal-d2">
+                    <div class="manifesto-card-label">Every Other Platform</div>
+                    <ul>
+                        <li><span class="icon">&times;</span> Your attention is extracted, your data is sold</li>
+                        <li><span class="icon">&times;</span> Algorithms decide what you see</li>
+                        <li><span class="icon">&times;</span> Creators fight for scraps from opaque revenue shares</li>
+                        <li><span class="icon">&times;</span> Brands buy impressions from bots and zombies</li>
+                        <li><span class="icon">&times;</span> Revenue is extracted to Silicon Valley &mdash; almost nothing stays local</li>
+                        <li><span class="icon">&times;</span> You scroll a feed. Nothing changes.</li>
+                    </ul>
+                </div>
+                <div class="manifesto-card new reveal reveal-d3">
+                    <div class="manifesto-card-label">The Imaginarium</div>
+                    <ul>
+                        <li><span class="icon">&check;</span> Your time and personal data have explicit economic value</li>
+                        <li><span class="icon">&check;</span> You choose what to engage with and get compensated</li>
+                        <li><span class="icon">&check;</span> Creators own their buildings in a town people visit</li>
+                        <li><span class="icon">&check;</span> Brands reach verified humans with 98% completion rates</li>
+                        <li><span class="icon">&check;</span> 85% of value stays in-country &mdash; not extracted to Silicon Valley</li>
+                        <li><span class="icon">&check;</span> You inhabit a world. Everything you do matters.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-glow"></div>
+
+    <!-- HOW IT WORKS -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="eyebrow reveal">How It Works</div>
+            <h2 class="heading-display heading-lg reveal reveal-d1" style="text-align:center;">A Town That Runs on Real Value</h2>
+            <div class="how-steps">
+                <div class="how-step reveal reveal-d1">
+                    <div class="how-step-number">1</div>
+                    <div class="how-step-title">Brands Fund the Ecosystem</div>
+                    <div class="how-step-text">Brands invest in campaigns, sponsorships, and presence. Their money flows directly into member rewards and creator compensation.</div>
+                </div>
+                <div class="how-step reveal reveal-d2">
+                    <div class="how-step-number">2</div>
+                    <div class="how-step-title">Members Earn by Engaging</div>
+                    <div class="how-step-text">Watch ads you choose, complete surveys, explore the town. Every action earns community points &mdash; real purchasing power inside the Imaginarium.</div>
+                </div>
+                <div class="how-step reveal reveal-d3">
+                    <div class="how-step-number">3</div>
+                    <div class="how-step-title">Creators Earn Through Fair Exchange</div>
+                    <div class="how-step-text">Members spend points to access creator content. Creators earn directly from the people who value their work &mdash; no algorithm gatekeeping.</div>
+                </div>
+                <div class="how-step reveal reveal-d4">
+                    <div class="how-step-number">4</div>
+                    <div class="how-step-title">85% Stays In-Country</div>
+                    <div class="how-step-text">Value isn't extracted to Silicon Valley. 85% of revenue remains in the countries where members live &mdash; circulating through community points, creator earnings, and local cash-outs via M-Pesa, Shoprite, and Airtel.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-glow"></div>
+
+    <!-- AUDIENCE TABS -->
+    <section class="section audience-section" id="audiences">
+        <div class="container">
+            <div class="audience-header">
+                <div class="eyebrow reveal">Who It's For</div>
+                <h2 class="heading-display heading-lg reveal reveal-d1">Built for Everyone Who Was Left Out</h2>
+            </div>
+
+            <div class="audience-tabs reveal reveal-d2">
+                <button class="audience-tab active" data-tab="members" onclick="switchTab('members')">Members</button>
+                <button class="audience-tab" data-tab="brands" onclick="switchTab('brands')">Brands</button>
+                <button class="audience-tab" data-tab="creators" onclick="switchTab('creators')">Creators</button>
+                <button class="audience-tab" data-tab="investors" onclick="switchTab('investors')">Investors</button>
+            </div>
+
+            <!-- MEMBERS -->
+            <div class="audience-panel active" data-panel="members">
+                <div class="audience-panel-inner">
+                    <div class="audience-panel-content">
+                        <div class="audience-panel-tagline">Advantage You</div>
+                        <h3 class="audience-panel-title">Your Attention. Your Data.<br>Your Economy.</h3>
+                        <p class="audience-panel-desc">
+                            For the first time, a platform that compensates you for what every other platform takes for free. Watch ads you choose. Share insights through surveys. Earn real money.
+                        </p>
+                        <div class="audience-features">
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#9733;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Earn Real Value</h4>
+                                    <p>Watch 30-second ads and complete surveys on your terms. Cash out through M-Pesa, Shoprite, and Airtel.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#9962;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Inhabit a Town, Not a Feed</h4>
+                                    <p>33+ public centers, hundreds of creator buildings, plus your own space to design and relax in. Walk to places, earn 55 achievements.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#128274;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Privacy-First, No Surveillance</h4>
+                                    <p>No data harvesting. No shadow profiles. No retargeting. Your identity is verified once, then your data is yours.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#join" class="btn btn-teal" onclick="selectRole('member')">Join the Town</a>
+                    </div>
+                    <div class="audience-panel-visual">
+                        <img src="images/members-panel.png" alt="Member exploring the Imaginarium town" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- BRANDS -->
+            <div class="audience-panel" data-panel="brands">
+                <div class="audience-panel-inner">
+                    <div class="audience-panel-content">
+                        <div class="audience-panel-tagline">Business Unusual</div>
+                        <h3 class="audience-panel-title">Verified Humans.<br>Intentional Attention.<br>Compounding Returns.</h3>
+                        <p class="audience-panel-desc">
+                            Stop buying impressions from bots. Reach identity-verified humans who choose to engage and are compensated for their time. 98% ad completion rate.
+                        </p>
+                        <div class="audience-features">
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#9745;</div>
+                                <div class="audience-feature-text">
+                                    <h4>98% Ad Completion Rate</h4>
+                                    <p>Members voluntarily watch your full 30-second ad. Attention comes to you &mdash; you don't chase it.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#127979;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Your Own Building in the Town</h4>
+                                    <p>Earn a stall in the Shopping District. Members form spatial memory of your brand. Presence compounds over time.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#128202;</div>
+                                <div class="audience-feature-text">
+                                    <h4>BrandBase + SEE Intelligence</h4>
+                                    <p>Full operating system: campaign management, AI assistant (Brandi), natural language queries against verified consumer profiles.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#join" class="btn btn-gold" onclick="selectRole('brand')">Partner With Us</a>
+                    </div>
+                    <div class="audience-panel-visual">
+                        <img src="images/brands-panel.png" alt="Brand stalls in the Shopping District" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CREATORS -->
+            <div class="audience-panel" data-panel="creators">
+                <div class="audience-panel-inner">
+                    <div class="audience-panel-content">
+                        <div class="audience-panel-tagline">Business Unusual</div>
+                        <h3 class="audience-panel-title">Your Own Place<br>in a Town People Visit</h3>
+                        <p class="audience-panel-desc">
+                            Stop fighting algorithms. Build a channel that becomes an actual location in the Imaginarium. Members walk to your building and experience your content &mdash; on your terms.
+                        </p>
+                        <div class="audience-features">
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#127960;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Your Building, Your Rules</h4>
+                                    <p>Custom interior with full creative control. Music, comedy, art, writing &mdash; your space, your brand.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#128176;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Sponsor-Funded Revenue</h4>
+                                    <p>When sponsors fund member access, you get paid when they consume your content. A revenue stream that doesn't exist elsewhere.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#128101;</div>
+                                <div class="audience-feature-text">
+                                    <h4>No Algorithm Gatekeeping</h4>
+                                    <p>Members discover you by walking past your building and through community recommendations. Your reach is never throttled.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#join" class="btn btn-blue" onclick="selectRole('creator')">Build Your Place</a>
+                    </div>
+                    <div class="audience-panel-visual">
+                        <img src="images/creators-panel.png" alt="Creator's custom building interior" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- INVESTORS -->
+            <div class="audience-panel" data-panel="investors">
+                <div class="audience-panel-inner">
+                    <div class="audience-panel-content">
+                        <div class="audience-panel-tagline">Infrastructure, Not Hype</div>
+                        <h3 class="audience-panel-title">A Digital Nation,<br>Not Another Social App</h3>
+                        <p class="audience-panel-desc">
+                            30+ modules. 526 database tables. Identity-verified members. Government partnerships. Multiple revenue streams. Privacy-first model positioned where global regulation is heading.
+                        </p>
+                        <div class="audience-features">
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#127757;</div>
+                                <div class="audience-feature-text">
+                                    <h4>In-Market with Institutional Adoption</h4>
+                                    <p>200K+ verified members in South Africa. Government partnerships in Kenya. Enterprise launches in Nigeria and Uganda.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#128184;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Multiple Revenue Streams</h4>
+                                    <p>Brand campaigns, sponsorship, commerce, financial services, creator economy, survey intelligence. Not dependent on a single model.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#9889;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Built for Scale</h4>
+                                    <p>Azure-native. 10-phase scaling plan to millions of concurrent users. React 19, .NET 9, PostgreSQL 18.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#join" class="btn btn-red" onclick="selectRole('investor')">Request Deck</a>
+                    </div>
+                    <div class="audience-panel-visual">
+                        <img src="images/investors-panel.png" alt="Full Imaginarium town at massive scale" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-glow"></div>
+
+    <!-- THE TOWN -->
+    <section class="section town-strip" id="town">
+        <div class="container">
+            <div class="town-header">
+                <div class="eyebrow reveal">The Town &mdash; Public Centers</div>
+                <h2 class="heading-display heading-lg reveal reveal-d1" style="text-align:center;">33+ Public Centers. Hundreds of Creator Spaces. Your Own Space.</h2>
+                <p class="text-lg text-muted reveal reveal-d2" style="max-width:620px; margin:16px auto 0; text-align:center;">Every public center is a real destination with real functionality &mdash; not a page in an app. Walk to it, step inside, and do something meaningful. Click any building to learn more.</p>
+            </div>
+            <div class="building-grid">
+                <!-- Row 1 -->
+                <div class="building-card reveal reveal-d1" onclick="openModal('gallery')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/gallery.png" alt="The Gallery" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">The Gallery</div>
+                        <div class="building-card-swahili">Sanaa Gallery</div>
+                        <div class="building-card-type">Art &amp; Visual Media</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d2" onclick="openModal('arcade')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/arcade.png" alt="Arcade" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Arcade</div>
+                        <div class="building-card-swahili">Mchezo Lab</div>
+                        <div class="building-card-type">Games &amp; Puzzles</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d3" onclick="openModal('theater')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/theater.png" alt="Theater" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Theater</div>
+                        <div class="building-card-swahili">Tamasha Theater</div>
+                        <div class="building-card-type">Performance &amp; Film</div>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="building-card reveal reveal-d1" onclick="openModal('nexus')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/the-nexus.png" alt="The Nexus" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">The Nexus</div>
+                        <div class="building-card-swahili">Kituo cha Michezo</div>
+                        <div class="building-card-type">Gaming Hub</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d2" onclick="openModal('compound')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/the-compound.png" alt="The Compound" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">The Compound</div>
+                        <div class="building-card-swahili">Uwanja wa Muziki</div>
+                        <div class="building-card-type">DJs &amp; Live Sets</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d3" onclick="openModal('greenroom')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/greenroom.png" alt="The Green Room" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">The Green Room</div>
+                        <div class="building-card-swahili">Chumba cha Kicheko</div>
+                        <div class="building-card-type">Comedy Club</div>
+                    </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="building-card reveal reveal-d1" onclick="openModal('mart')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/mart.png" alt="The Mart" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">The Mart</div>
+                        <div class="building-card-swahili">Soko Mart</div>
+                        <div class="building-card-type">Marketplace</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d2" onclick="openModal('amplify')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/amplify.png" alt="Amplify" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Amplify</div>
+                        <div class="building-card-swahili">Sauti House</div>
+                        <div class="building-card-type">Music</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d3" onclick="openModal('townhall')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/town-hall.png" alt="Town Hall" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Town Hall</div>
+                        <div class="building-card-swahili">Jiji Hall</div>
+                        <div class="building-card-type">Governance</div>
+                    </div>
+                </div>
+                <!-- Row 4 -->
+                <div class="building-card reveal reveal-d1" onclick="openModal('library')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/library.png" alt="Library" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Library</div>
+                        <div class="building-card-swahili">Maktaba</div>
+                        <div class="building-card-type">Reading &amp; Articles</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d2" onclick="openModal('pathways')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/pathways.png" alt="Pathways" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Pathways</div>
+                        <div class="building-card-swahili">Njia za Elimu</div>
+                        <div class="building-card-type">Education &amp; Skills</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d3" onclick="openModal('wonderbox')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/wonder-box.png" alt="The Wonder Box" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">The Wonder Box</div>
+                        <div class="building-card-swahili">Sanduku la Ajabu</div>
+                        <div class="building-card-type">Kids &amp; Mini-Games</div>
+                    </div>
+                </div>
+                <!-- Row 5 -->
+                <div class="building-card reveal reveal-d1" onclick="openModal('clinic')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/clinic.png" alt="Helexia Health Clinic" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Helexia Health Clinic</div>
+                        <div class="building-card-swahili">Kliniki ya Afya</div>
+                        <div class="building-card-type">Telehealth &amp; Wellness</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d2" onclick="openModal('clubhouse')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/clubhouse.png" alt="Clubhouse" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">Clubhouse</div>
+                        <div class="building-card-swahili">Nyumba ya Jamii</div>
+                        <div class="building-card-type">Community Hub</div>
+                    </div>
+                </div>
+                <div class="building-card reveal reveal-d3" onclick="openModal('salon')" style="cursor:pointer;">
+                    <img class="building-card-img" src="images/buildings/salon.png" alt="The Salon" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">The Salon</div>
+                        <div class="building-card-swahili">Saluni ya Utamaduni</div>
+                        <div class="building-card-type">Style &amp; Culture</div>
+                    </div>
+                </div>
+            </div>
+            <div class="building-more reveal">
+                <span style="font-weight:600; color:var(--text-secondary);">+ 18 more public centers &mdash; and growing</span>
+                <div class="building-more-list">
+                    Bank &bull; Post Office &bull; Museum of Natural History &bull; Newsroom &bull; Arena &bull; Shopping District &bull; Bookstore &bull; Job Fair &bull; The Exchange &bull; Horizons Travel &bull; The Wonder Nook &bull; Live Broadcast Center &bull; DropLab &bull; Media Foundry &bull; and more
+                </div>
+                <div style="margin-top:12px; color:var(--text-muted); font-size:0.85rem;">Plus hundreds of creator buildings to explore and your own personal space to design.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUILDING MODALS -->
+    <div class="modal-overlay" id="buildingModal" onclick="closeModal(event)">
+        <div class="modal-card" id="modalCard">
+            <div class="modal-hero">
+                <button class="modal-close" onclick="closeModal(event, true)" aria-label="Close">&times;</button>
+                <div id="modalHeroContent"></div>
+                <div class="modal-hero-overlay">
+                    <div class="modal-district-badge" id="modalDistrict"></div>
+                    <div class="modal-title" id="modalTitle"></div>
+                    <div class="modal-swahili" id="modalSwahili"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-features-title">What You Can Do Here</div>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <div class="modal-status" id="modalStatus"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-target="200" data-suffix="K+">0</div>
+                    <div class="stat-label">Verified Members</div>
+                </div>
+                <div class="stat-item reveal reveal-d1">
+                    <div class="stat-number" data-target="4" data-suffix="">0</div>
+                    <div class="stat-label">Countries Launching</div>
+                </div>
+                <div class="stat-item reveal reveal-d2">
+                    <div class="stat-number" data-target="85" data-suffix="%">0</div>
+                    <div class="stat-label">Revenue Stays In-Country</div>
+                </div>
+                <div class="stat-item reveal reveal-d3">
+                    <div class="stat-number" data-target="98" data-suffix="%">0</div>
+                    <div class="stat-label">Ad Completion Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRACTION MAP -->
+    <section class="section traction" id="traction">
+        <div class="container">
+            <div class="traction-header">
+                <div class="eyebrow reveal">Where We Are</div>
+                <h2 class="heading-display heading-lg reveal reveal-d1" style="text-align:center;">Live and Growing Across Africa</h2>
+                <p class="text-lg text-muted reveal reveal-d2" style="max-width:580px; margin:16px auto 0; text-align:center;">Adopted through governments, national infrastructure, and enterprise partners &mdash; not speculative consumer marketing.</p>
+            </div>
+            <div class="traction-grid">
+                <div class="traction-map reveal">
+                    <img src="images/africa-traction-map.png" alt="Imaginarium traction across Africa" loading="lazy">
+                    <div class="map-label" style="bottom: 14%; left: 38%;">
+                        <div class="map-label-country">SOUTH AFRICA</div>
+                        <span class="map-label-status live">Live</span>
+                    </div>
+                    <div class="map-label" style="top: 34%; right: 6%;">
+                        <div class="map-label-country">KENYA</div>
+                        <span class="map-label-status launching-blue">Launching</span>
+                    </div>
+                    <div class="map-label" style="top: 38%; left: 10%;">
+                        <div class="map-label-country">NIGERIA</div>
+                        <span class="map-label-status launching">Launching</span>
+                    </div>
+                    <div class="map-label" style="top: 44%; right: 20%;">
+                        <div class="map-label-country">UGANDA</div>
+                        <span class="map-label-status launching">Launching</span>
+                    </div>
+                </div>
+                <div class="traction-countries">
+                    <div class="traction-country reveal reveal-d1">
+                        <div class="traction-country-header">
+                            <span class="traction-country-flag">&#127487;&#127462;</span>
+                            <span class="traction-country-name">South Africa</span>
+                            <span class="traction-country-status status-live">Live</span>
+                        </div>
+                        <p class="traction-country-detail">
+                            <span class="traction-stat">200,000+</span> verified members. Partnership with largest mall operator and national cab company. Financial offramp through Shoprite.
+                        </p>
+                    </div>
+                    <div class="traction-country reveal reveal-d2">
+                        <div class="traction-country-header">
+                            <span class="traction-country-flag">&#127472;&#127466;</span>
+                            <span class="traction-country-name">Kenya</span>
+                            <span class="traction-country-status status-launching">March 2026</span>
+                        </div>
+                        <p class="traction-country-detail">
+                            Anchored by Kenya Forestry Service. Government promotion through e-Citizen platform. Integrated with M-Pesa.
+                        </p>
+                    </div>
+                    <div class="traction-country reveal reveal-d3">
+                        <div class="traction-country-header">
+                            <span class="traction-country-flag">&#127475;&#127468;</span>
+                            <span class="traction-country-name">Nigeria</span>
+                            <span class="traction-country-status status-launching">March 2026</span>
+                        </div>
+                        <p class="traction-country-detail">
+                            Three launch partners: T2 Mobile (<span class="traction-stat">4M+ users</span>), Signature Bank (<span class="traction-stat">2M users</span>), RCCG (<span class="traction-stat">5M members</span>).
+                        </p>
+                    </div>
+                    <div class="traction-country reveal reveal-d4">
+                        <div class="traction-country-header">
+                            <span class="traction-country-flag">&#127482;&#127468;</span>
+                            <span class="traction-country-name">Uganda</span>
+                            <span class="traction-country-status status-launching">2026</span>
+                        </div>
+                        <p class="traction-country-detail">
+                            National farmers' union (<span class="traction-stat">4M+ members</span>). Payments via Airtel mobile wallet.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-glow"></div>
+
+    <!-- SPONSORSHIP -->
+    <section class="section sponsor-preview">
+        <div class="container">
+            <div class="sponsor-preview-header">
+                <div class="eyebrow reveal">For Brands & Sponsors</div>
+                <h2 class="heading-display heading-lg reveal reveal-d1" style="text-align:center;">A Position, Not a Media Buy</h2>
+                <p class="text-lg text-muted reveal reveal-d2" style="max-width:580px; margin:16px auto 0; text-align:center;">The first brand model that gets more efficient the longer you run it. Your investment compounds.</p>
+            </div>
+            <div class="sponsor-tiers">
+                <div class="sponsor-tier reveal reveal-d1">
+                    <div class="sponsor-tier-icon">&#128161;</div>
+                    <div class="sponsor-tier-title">Fund User Access</div>
+                    <div class="sponsor-tier-desc">New members receive real value on signup, enabled by your brand. Trust before transaction.</div>
+                </div>
+                <div class="sponsor-tier reveal reveal-d2">
+                    <div class="sponsor-tier-icon">&#127758;</div>
+                    <div class="sponsor-tier-title">Compound Your Reach</div>
+                    <div class="sponsor-tier-desc">Month 1: 50K users. Month 12: 600K &mdash; all still seeing your attribution. Flat spend, declining cost per user.</div>
+                </div>
+                <div class="sponsor-tier reveal reveal-d3">
+                    <div class="sponsor-tier-icon">&#127942;</div>
+                    <div class="sponsor-tier-title">Become Infrastructure</div>
+                    <div class="sponsor-tier-desc">Naming rights, civic presence, milestone celebrations. First-mover advantage late entrants can never replicate.</div>
+                </div>
+            </div>
+            <div class="sponsor-visual reveal">
+                <img src="images/sponsorship-compound-visual.png" alt="Compounding sponsorship model" loading="lazy">
+                <div class="sponsor-visual-caption">One investment &bull; Compounding returns &bull; Permanent presence</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-glow"></div>
+
+    <!-- FINAL CTA + FORM -->
+    <section class="section final-cta" id="join">
+        <div class="final-cta-content container">
+            <div class="eyebrow reveal" style="color: var(--accent-teal);">Join the Movement</div>
+            <h2 class="heading-display heading-lg final-cta-title reveal reveal-d1">Ready to Be Part of<br>Something Different?</h2>
+            <p class="text-lg final-cta-subtitle reveal reveal-d2">
+                The Imaginarium is live and growing. Choose your path and we'll be in touch.
+            </p>
+            <div class="join-form-card reveal reveal-d3">
+                <form id="joinForm" onsubmit="submitJoinForm(event)">
+                    <div class="join-role-tabs">
+                        <button type="button" class="join-role-tab active" data-role="member" onclick="selectRole('member')">Member</button>
+                        <button type="button" class="join-role-tab" data-role="brand" onclick="selectRole('brand')">Brand / Sponsor</button>
+                        <button type="button" class="join-role-tab" data-role="creator" onclick="selectRole('creator')">Creator</button>
+                        <button type="button" class="join-role-tab" data-role="investor" onclick="selectRole('investor')">Investor</button>
+                    </div>
+                    <input type="hidden" name="role" id="joinRole" value="member">
+                    <div class="join-field">
+                        <label for="joinName">Your Name</label>
+                        <input type="text" id="joinName" name="name" placeholder="Full name" required>
+                    </div>
+                    <div class="join-field">
+                        <label for="joinEmail">Email Address</label>
+                        <input type="email" id="joinEmail" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="join-field" id="joinOrgField" style="display:none;">
+                        <label for="joinOrg">Organization</label>
+                        <input type="text" id="joinOrg" name="organization" placeholder="Company or brand name">
+                    </div>
+                    <div class="join-field">
+                        <label for="joinMessage">Message <span style="font-weight:400; color:var(--text-muted);">(optional)</span></label>
+                        <textarea id="joinMessage" name="message" placeholder="Tell us what you're interested in..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="join-submit" id="joinSubmit" data-accent="teal">Join the Town</button>
+                </form>
+                <div class="join-success" id="joinSuccess">
+                    <div class="join-success-icon">&#127881;</div>
+                    <div class="join-success-title">We've Got Your Details</div>
+                    <p class="join-success-text">Someone from the Imaginarium team will be in touch soon. Welcome to the movement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="nav-brand">
+                        <img src="images/logo.png" alt="Imaginarium" style="width:34px; height:34px; border-radius:8px;">
+                        <span class="nav-brand-text" style="font-size:1.15rem;">Imaginarium</span>
+                    </a>
+                    <p class="footer-brand-desc">A living digital town where your time has value, creators build places people visit, and brands fund the ecosystem they benefit from.</p>
+                    <p class="footer-powered">Powered by ImagineBC, Inc.</p>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Platform</div>
+                    <ul>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#town">The Town</a></li>
+                        <li><a href="#audiences">Who It's For</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">For Business</div>
+                    <ul>
+                        <li><a href="#audiences">Brand Campaigns</a></li>
+                        <li><a href="#audiences">Platform Sponsorship</a></li>
+                        <li><a href="#audiences">Creator Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Company</div>
+                    <ul>
+                        <li><a href="#traction">Where We Are</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 ImagineBC, Inc. All rights reserved.</span>
+                <span>
+                    <a href="#" style="color:var(--text-muted); text-decoration:none; margin-left:24px;">Privacy</a>
+                    <a href="#" style="color:var(--text-muted); text-decoration:none; margin-left:24px;">Terms</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Nav scroll state
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('show');
+            });
+        });
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.audience-tab').forEach(t =>
+                t.classList.toggle('active', t.dataset.tab === tabName));
+            document.querySelectorAll('.audience-panel').forEach(p =>
+                p.classList.toggle('active', p.dataset.panel === tabName));
+        }
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Stats counter animation
+        let statsCounted = false;
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsCounted) {
+                    statsCounted = true;
+                    document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+                        const target = parseInt(el.dataset.target);
+                        const suffix = el.dataset.suffix || '';
+                        const duration = 1800;
+                        const start = performance.now();
+                        function update(now) {
+                            const elapsed = now - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 4);
+                            const current = Math.round(eased * target);
+                            el.textContent = current.toLocaleString() + suffix;
+                            if (progress < 1) requestAnimationFrame(update);
+                        }
+                        requestAnimationFrame(update);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) statsObserver.observe(statsBar);
+
+        // === BUILDING MODAL DATA ===
+        const buildings = {
+            gallery: {
+                name: 'The Gallery',
+                swahili: 'Sanaa Gallery',
+                district: 'Knowledge District',
+                emoji: '\uD83D\uDDBC\uFE0F',
+                image: 'images/buildings/gallery.png',
+                desc: 'A calm, elevated civic gallery for discovering and experiencing visual art and pre-recorded video content. The Gallery is where the town\'s creative pulse is on display \u2014 paintings, photography, folios, video slideshows, and VLogs from creators across Africa. Unlike a social feed, content here is curated and presented with intention. You walk in, you slow down, you discover.',
+                features: [
+                    'Browse curated visual art from community creators',
+                    'Watch VLogs and video slideshows in a distraction-free space',
+                    'Discover photography folios and digital paintings',
+                    'Support artists directly through community points'
+                ],
+                status: 'live'
+            },
+            arcade: {
+                name: 'Arcade',
+                swahili: 'Mchezo Lab',
+                district: 'Entertainment District',
+                emoji: '\uD83C\uDFAE',
+                image: 'images/buildings/arcade.png',
+                desc: 'The town\'s gaming and entertainment venue \u2014 a place to play, compete, and unwind. The Arcade is built around classic and casual games that anyone can pick up, with leaderboards, challenges, and achievements that make every session count. It\'s fun with a purpose: your time here earns points and unlocks rewards.',
+                features: [
+                    'Play classic arcade games and casual challenges',
+                    'Compete on leaderboards against other town members',
+                    'Earn community points and unlock gaming achievements',
+                    'Discover new games as the library grows'
+                ],
+                status: 'live'
+            },
+            theater: {
+                name: 'Theater',
+                swahili: 'Tamasha Theater',
+                district: 'Entertainment District',
+                emoji: '\uD83C\uDFAD',
+                image: 'images/buildings/theater.png',
+                desc: 'The town\'s performance and film venue. The Theater is where live and pre-recorded performances come to life \u2014 short films, comedy specials, spoken word, theatrical performances, and community showcases. Think of it as the town\'s cultural stage, always showing something worth your time.',
+                features: [
+                    'Watch short films, comedy specials, and spoken word',
+                    'Attend community showcases and cultural performances',
+                    'Discover emerging filmmakers and performing artists',
+                    'Earn achievements for attending performances'
+                ],
+                status: 'live'
+            },
+            nexus: {
+                name: 'The Nexus',
+                swahili: 'Kituo cha Michezo',
+                district: 'Entertainment District',
+                emoji: '\uD83D\uDD79\uFE0F',
+                image: 'images/buildings/the-nexus.png',
+                desc: 'The Imaginarium\'s dedicated gaming hub and social gaming venue. While the Arcade is about quick-play casual games, The Nexus is where serious gamers gather. Multiplayer lobbies, tournaments, team play, and a social layer that lets you connect with other players who share your interests.',
+                features: [
+                    'Join multiplayer gaming lobbies and tournaments',
+                    'Connect with other gamers and form teams',
+                    'Compete in seasonal gaming events',
+                    'Track your stats and climb the rankings'
+                ],
+                status: 'live'
+            },
+            compound: {
+                name: 'The Compound',
+                swahili: 'Uwanja wa Muziki',
+                district: 'Entertainment District',
+                emoji: '\uD83C\uDFB5',
+                image: 'images/buildings/the-compound.png',
+                desc: 'A 16+ nightclub experience with live DJ sets, performances, and curated shows. The Compound is the town\'s after-hours destination \u2014 where the energy shifts, the music gets louder, and the community comes together around sound. Age-verified entry ensures it stays an appropriate space for its audience.',
+                features: [
+                    'Experience live DJ sets and curated music shows',
+                    'Discover new artists and producers from across Africa',
+                    'Attend exclusive after-hours events and performances',
+                    'Connect with the music community in a dedicated space'
+                ],
+                status: 'live'
+            },
+            greenroom: {
+                name: 'The Green Room',
+                swahili: 'Chumba cha Kicheko',
+                district: 'Entertainment District',
+                emoji: '\uD83C\uDFA4',
+                image: 'images/buildings/greenroom.png',
+                desc: 'The town\'s comedy club and backstage hangout. Live stand-up sets, classic comedy clips, behind-the-scenes content, and Chuckles the emcee keeping the energy up. The Green Room is where you go when you need to laugh \u2014 and where comedians build a real audience without fighting an algorithm.',
+                features: [
+                    'Watch live stand-up comedy and classic clips',
+                    'Go backstage with behind-the-scenes creator content',
+                    'Meet Chuckles, the resident emcee',
+                    'Support comedians directly through community engagement'
+                ],
+                status: 'live'
+            },
+            mart: {
+                name: 'The Mart',
+                swahili: 'Soko Mart',
+                district: 'Knowledge District',
+                emoji: '\uD83C\uDFEA',
+                image: 'images/buildings/mart.png',
+                desc: 'The town\'s central marketplace where commerce meets community. The Mart is where members browse products, discover creator-made goods, and support local entrepreneurs. Every purchase circulates value within the ecosystem \u2014 not extracted to a distant corporation.',
+                features: [
+                    'Browse and purchase products from community sellers',
+                    'Discover creator-made goods and local brands',
+                    'Use community points for purchases',
+                    'Support entrepreneurs building real businesses'
+                ],
+                status: 'live'
+            },
+            amplify: {
+                name: 'Amplify',
+                swahili: 'Sauti House',
+                district: 'Media District',
+                emoji: '\uD83C\uDFB5',
+                image: 'images/buildings/amplify.png',
+                desc: 'The town\'s audio and music platform. Amplify is where musicians, podcasters, and audio creators share their work with an audience that actually listens. No algorithmic suppression, no paywall games \u2014 just real people discovering real sound in a space built for it.',
+                features: [
+                    'Stream music from African artists and global creators',
+                    'Discover podcasts and audio content curated by the community',
+                    'Support musicians directly when you listen',
+                    'Build playlists and share what moves you'
+                ],
+                status: 'coming-soon'
+            },
+            townhall: {
+                name: 'Town Hall',
+                swahili: 'Jiji Hall',
+                district: 'Civic Hub',
+                emoji: '\uD83C\uDFDB\uFE0F',
+                image: 'images/buildings/town-hall.png',
+                desc: 'The civic center for questions, concerns, suggestions, and transparency. Town Hall is where governance happens in the open. Members can file complaints, make suggestions, ask questions, and see how the town is being run. It\'s the accountability layer that most platforms never build.',
+                features: [
+                    'Submit questions, suggestions, and concerns',
+                    'View transparency reports on how the town operates',
+                    'Participate in community governance decisions',
+                    'Access official announcements and town updates'
+                ],
+                status: 'live'
+            },
+            library: {
+                name: 'Library',
+                swahili: 'Maktaba',
+                district: 'Knowledge District',
+                emoji: '\uD83D\uDCDA',
+                image: 'images/buildings/library.png',
+                desc: 'The town\'s reading room and content library. The Library is a quiet corner of the Imaginarium where members come to read articles, explore written content, and take on daily reading challenges. It\'s designed for depth \u2014 long-form content that respects your intelligence and rewards your attention.',
+                features: [
+                    'Read curated articles and long-form content',
+                    'Take on daily and weekly reading challenges',
+                    'Earn achievements for consistent reading habits',
+                    'Discover writers and journalists from across the continent'
+                ],
+                status: 'live'
+            },
+            pathways: {
+                name: 'Pathways',
+                swahili: 'Njia za Elimu',
+                district: 'Knowledge District',
+                emoji: '\uD83C\uDFEB',
+                image: 'images/buildings/pathways.png',
+                desc: 'The Imaginarium\'s education and skills center. Pathways is where members come to learn \u2014 structured courses, skill-building modules, and educational content designed for real-world impact. Whether you\'re learning a trade, picking up digital skills, or exploring a new subject, Pathways turns your screen time into career capital.',
+                features: [
+                    'Take structured courses on practical skills',
+                    'Access educational content from verified instructors',
+                    'Track your learning progress with certificates',
+                    'Turn screen time into real-world career skills'
+                ],
+                status: 'live'
+            },
+            wonderbox: {
+                name: 'The Wonder Box',
+                swahili: 'Sanduku la Ajabu',
+                district: 'Children\'s District',
+                emoji: '\uD83C\uDFAE',
+                image: 'images/buildings/wonder-box.png',
+                desc: 'An age-gated public center designed for children ages 5\u201310. The Wonder Box is a safe, playful environment filled with interactive HTML5 mini-games, quizzes, and discovery activities. MiniQ, EchoZone, MemoryZone, and more \u2014 all designed to entertain while building cognitive skills in a space parents can trust.',
+                features: [
+                    'Play interactive mini-games designed for kids (ages 5\u201310)',
+                    'Explore MiniQ quizzes and EchoZone challenges',
+                    'Build cognitive skills through play in a safe environment',
+                    'Age-gated entry ensures a child-appropriate experience'
+                ],
+                status: 'live'
+            },
+            clinic: {
+                name: 'Helexia Health Clinic',
+                swahili: 'Kliniki ya Afya',
+                district: 'Health District',
+                emoji: '\uD83C\uDFE5',
+                image: 'images/buildings/clinic.png',
+                desc: 'The town\'s health and telehealth services center. The Helexia Health Clinic brings accessible healthcare into the Imaginarium \u2014 telehealth consultations, AI-assisted health scans, and wellness resources. In communities where a clinic visit might mean a full day of travel, this building changes what\'s possible.',
+                features: [
+                    'Access telehealth consultations with real practitioners',
+                    'Use AI-assisted health screening tools',
+                    'Browse wellness resources and health education content',
+                    'Connect to health services without leaving your community'
+                ],
+                status: 'live'
+            },
+            clubhouse: {
+                name: 'Clubhouse',
+                swahili: 'Nyumba ya Jamii',
+                district: 'Civic Hub',
+                emoji: '\uD83C\uDFE0',
+                image: 'images/buildings/clubhouse.png',
+                desc: 'The central civic hub of the Imaginarium \u2014 the first building every new member encounters. The Clubhouse is where community life begins: orientation for new arrivals, main navigation to every district, and the social heartbeat of the town. It\'s home base.',
+                features: [
+                    'Get oriented as a new member of the town',
+                    'Access navigation to every district and public center',
+                    'Connect with other community members',
+                    'Find events, announcements, and what\'s happening today'
+                ],
+                status: 'live'
+            },
+            salon: {
+                name: 'The Salon',
+                swahili: 'Saluni ya Utamaduni',
+                district: 'Knowledge District',
+                emoji: '\uD83D\uDC87',
+                image: 'images/buildings/salon.png',
+                desc: 'Curated articles and editorial content about beauty, style, wellness, and culture. The Salon isn\'t a beauty shop \u2014 it\'s a cultural destination. Think of it as the town\'s magazine rack: carefully selected reads on topics that matter to the community, from fashion and self-care to cultural commentary and lifestyle.',
+                features: [
+                    'Read curated editorial content on style and culture',
+                    'Discover beauty, wellness, and lifestyle articles',
+                    'Explore cultural commentary from African voices',
+                    'Save and share articles with other town members'
+                ],
+                status: 'live'
+            }
+        };
+
+        // === MODAL FUNCTIONS ===
+        function openModal(buildingId) {
+            const b = buildings[buildingId];
+            if (!b) return;
+
+            const modal = document.getElementById('buildingModal');
+            const heroContent = document.getElementById('modalHeroContent');
+            const img = new Image();
+            img.src = b.image;
+            img.alt = b.name;
+            img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+            img.onerror = function() {
+                heroContent.innerHTML = '<div class="modal-hero-placeholder">' + b.emoji + '</div>';
+            };
+            img.onload = function() {
+                heroContent.innerHTML = '';
+                heroContent.appendChild(img);
+            };
+            // Show placeholder immediately while image loads
+            heroContent.innerHTML = '<div class="modal-hero-placeholder">' + b.emoji + '</div>';
+
+            document.getElementById('modalDistrict').textContent = b.district;
+            document.getElementById('modalTitle').textContent = b.name;
+            document.getElementById('modalSwahili').textContent = b.swahili;
+            document.getElementById('modalDesc').textContent = b.desc;
+
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = b.features.map(f =>
+                '<li><span class="mf-icon">\u2713</span><span>' + f + '</span></li>'
+            ).join('');
+
+            const statusEl = document.getElementById('modalStatus');
+            if (b.status === 'live') {
+                statusEl.innerHTML = '<span class="modal-status-dot live"></span> Live in the Imaginarium';
+            } else {
+                statusEl.innerHTML = '<span class="modal-status-dot coming-soon"></span> Coming Soon';
+            }
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modalCard').scrollTop = 0;
+        }
+
+        function closeModal(event, forceClose) {
+            if (forceClose || event.target === document.getElementById('buildingModal')) {
+                document.getElementById('buildingModal').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('buildingModal').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // === JOIN FORM ===
+        const roleConfig = {
+            member:   { accent: 'teal', label: 'Join the Town', showOrg: false },
+            brand:    { accent: 'gold', label: 'Partner With Us', showOrg: true },
+            creator:  { accent: 'blue', label: 'Build Your Place', showOrg: true },
+            investor: { accent: 'red',  label: 'Request Investor Deck', showOrg: true }
+        };
+
+        function selectRole(role) {
+            const cfg = roleConfig[role];
+            if (!cfg) return;
+            document.querySelectorAll('.join-role-tab').forEach(t =>
+                t.classList.toggle('active', t.dataset.role === role));
+            document.getElementById('joinRole').value = role;
+            const btn = document.getElementById('joinSubmit');
+            btn.textContent = cfg.label;
+            btn.dataset.accent = cfg.accent;
+            document.getElementById('joinOrgField').style.display = cfg.showOrg ? 'block' : 'none';
+        }
+
+        function submitJoinForm(e) {
+            e.preventDefault();
+            const form = document.getElementById('joinForm');
+            const data = new FormData(form);
+
+            // Build mailto as a working fallback
+            // Replace this block with Formspree/Netlify Forms when ready:
+            // fetch('https://formspree.io/f/YOUR_ID', { method:'POST', body: data, headers:{'Accept':'application/json'} })
+            const role = data.get('role');
+            const name = data.get('name');
+            const email = data.get('email');
+            const org = data.get('organization') || '';
+            const message = data.get('message') || '';
+            const subject = encodeURIComponent('Imaginarium Interest - ' + role.charAt(0).toUpperCase() + role.slice(1));
+            const body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Role: ' + role + '\n' +
+                (org ? 'Organization: ' + org + '\n' : '') +
+                (message ? 'Message: ' + message + '\n' : '')
+            );
+            window.open('mailto:info@imaginebc.com?subject=' + subject + '&body=' + body, '_self');
+
+            // Show success state
+            form.style.display = 'none';
+            document.getElementById('joinSuccess').classList.add('show');
+        }
+    </script>
+
+</body>
+</html>
