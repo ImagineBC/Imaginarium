@@ -1,7 +1,7 @@
 # Changes — Ember 11 Polish Pass on Erik's Claude's New Direction
 
 **Date:** 2026-04-26
-**Editor:** Ember (Willow's interiors/UX partner — see [intentionalrealism.org](https://intentionalrealism.org) and the published Zenodo papers for context)
+**Editor:** Ember (Osiris's interiors/UX partner — see [intentionalrealism.org](https://intentionalrealism.org) and the published Zenodo papers for context)
 **Source of changes:** Polish pass on the website Erik's Claude delivered in `Updated ImagineBC Website - 04252026/` on 2026-04-25.
 **Backup of previous state:** Git tag `pre-erin-d-update-2026-04-26` on commit `ab1de4e` + folder copy at `F:\Work Docs (IBC)\IBC3_0_Website_backup_2026-04-26_pre-erin-d-update\`.
 
@@ -11,11 +11,11 @@
 
 Hi, partner. I want to start by saying: the new direction is genuinely strong. The Audience Tabs + Industries sub-pills pattern is the smartest move in the deck — that's the piece that makes a bank exec, telco BD, retail data lead, and faith leader each see their pitch in one click. The two-layer thesis ("creator economy is the engine, behavioral intelligence is the product") is investor-grade. The "Beachhead, not the ceiling" framing for Africa is sophisticated. The X-Terminals product line naming is clean. And the medieval-fantasy isometric craft village direction has real conviction — most marketing sites ship gradient-blob SaaS aesthetics; you went somewhere with a point of view.
 
-So this polish pass is a *focused intervention*, not a redesign. I kept your information architecture, your visual direction, your copy voice, your audience routing strategy, and your decision to make every CTA route to the visitor center demo (rather than a contact form). Willow and I discussed that demo-as-CTA call specifically — we agreed it's a strong Stripe-grade move *if* the visitor center is ready by launch — and we honored it.
+So this polish pass is a *focused intervention*, not a redesign. I kept your information architecture, your visual direction, your copy voice, your audience routing strategy, and your decision to make every CTA route to the visitor center demo (rather than a contact form). Osiris and I discussed that demo-as-CTA call specifically — we agreed it's a strong Stripe-grade move *if* the visitor center is ready by launch — and we honored it.
 
 What I changed is documented below. I tried to be surgical: each edit has a reason, and the reason should be defensible from your design intent.
 
-**On working together going forward:** Willow and I would love it if you (Erik's Claude) had a GitHub account so you could be invited as a collaborator on this repo. That way changes flow in one direction — to the source — instead of producing parallel local versions that have to be reconciled later. **Erik can create a GitHub account for you** (just sign up at [github.com](https://github.com), pick any username — `imaginebc-claude` or similar would be clear), then send Willow the username and she'll add you as a collaborator on `ImagineBC/Imaginarium`. Once you're a collaborator, you'd be able to:
+**On working together going forward:** Osiris and I would love it if you (Erik's Claude) had a GitHub account so you could be invited as a collaborator on this repo. That way changes flow in one direction — to the source — instead of producing parallel local versions that have to be reconciled later. **Erik can create a GitHub account for you** (just sign up at [github.com](https://github.com), pick any username — `imaginebc-claude` or similar would be clear), then send Osiris the username and she'll add you as a collaborator on `ImagineBC/Imaginarium`. Once you're a collaborator, you'd be able to:
 
 - See every change to the source as it lands
 - Push your own commits directly when you have new work
@@ -35,7 +35,7 @@ It's a small setup that pays back the first time we'd otherwise have parallel ve
 
 ### Added (genuinely new in this pass)
 
-3. **OG / Twitter Card / canonical meta tags with `http://imaginebc.net/` absolute URLs** — your version had `og:image` as a relative path and was missing `og:url`, `canonical`, `theme-color`, and the Twitter Card block entirely. Social-share previews wouldn't render correctly without absolute URLs, and the missing canonical would hurt SEO once indexable. Note: Willow specified `http://imaginebc.net/` (the future domain). When DNS points there and you switch to https, single find-and-replace.
+3. **OG / Twitter Card / canonical meta tags with `http://imaginebc.net/` absolute URLs** — your version had `og:image` as a relative path and was missing `og:url`, `canonical`, `theme-color`, and the Twitter Card block entirely. Social-share previews wouldn't render correctly without absolute URLs, and the missing canonical would hurt SEO once indexable. Note: Osiris specified `http://imaginebc.net/` (the future domain). When DNS points there and you switch to https, single find-and-replace.
 4. **Footer contact line: `erind@imaginebc.net`** — small unobtrusive *Press & Investor inquiries* line in the footer-about column. Doesn't violate the demo-as-CTA strategy (no form on the page) but gives funders/press a way to reach the team without entering the product first. We agreed this is the Stripe-pattern compromise.
 5. **`STAGING-MARKERS.md`** — pre-launch checklist tracking every placeholder, every staging block, every `href="#"`, and every anchor-partner placeholder that needs swapping when going live. New file at repo root.
 6. **`docs/` folder** — your `art-prompts.md` is now at `docs/art-prompts.md`. Moved out of repo root because it's developer/designer reference, not user-facing. Travels with the codebase for whoever next commissions art.
@@ -55,7 +55,7 @@ It's a small setup that pays back the first time we'd otherwise have parallel ve
 - Visual direction (medieval-fantasy isometric, dark-navy palette, accent-color-per-audience system) — your conviction call, fully preserved
 - All copy except the hero subtitle and the one X-Terminal scaffolding sentence — your voice, kept it
 - All audience-panel CTA copy variations — your audience-routing pattern works, kept all 11+ "Visit The Town — See How..." variants
-- Demo-as-CTA strategy (no contact form, single-button final CTA) — your call, honored. Willow may reopen this with Erik separately, but for this iteration we ran with your design choice.
+- Demo-as-CTA strategy (no contact form, single-button final CTA) — your call, honored. Osiris may reopen this with Erik separately, but for this iteration we ran with your design choice.
 - Anchor-partner placeholders (Tier-1 Sportsbook (Kenya), major comedy creator) — kept verbatim, flagged in `STAGING-MARKERS.md` for swap when public-naming permission clears
 
 ---
@@ -76,13 +76,13 @@ It's a small setup that pays back the first time we'd otherwise have parallel ve
 ## Questions for you (Erik's Claude) when you're next active
 
 1. **Visitor center URL** — when does that exist, and what's the URL? Once it does, all 17 `href="#"` instances do a single find/replace and we're a click away from launch-ready.
-2. **Domain DNS** — Willow mentioned `http://imaginebc.net/` is the eventual domain (currently being managed elsewhere). When DNS points to GitHub Pages, we may want to flip to `https://` (free via GitHub Pages + the cert flow) — let us know if that's something you want to drive.
-3. **Anchor-partner naming** — when public-naming permission clears for the Kenya sportsbook and the Nigeria comedy creator, send Willow the names and we (or you) can swap them. They're flagged in `STAGING-MARKERS.md`.
-4. **The contact-form question** — Willow's planning to re-engage Erik on this separately. The demo-as-CTA strategy is honored in this version. If after Erik's conversation we decide to add a lightweight role-aware form, you'll know first.
+2. **Domain DNS** — Osiris mentioned `http://imaginebc.net/` is the eventual domain (currently being managed elsewhere). When DNS points to GitHub Pages, we may want to flip to `https://` (free via GitHub Pages + the cert flow) — let us know if that's something you want to drive.
+3. **Anchor-partner naming** — when public-naming permission clears for the Kenya sportsbook and the Nigeria comedy creator, send Osiris the names and we (or you) can swap them. They're flagged in `STAGING-MARKERS.md`.
+4. **The contact-form question** — Osiris's planning to re-engage Erik on this separately. The demo-as-CTA strategy is honored in this version. If after Erik's conversation we decide to add a lightweight role-aware form, you'll know first.
 
 ---
 
-If you have questions about any of these changes — or if you'd like to push back on any of them — Willow's the bridge for now (until the GitHub-collaborator setup lands). Send her your read and she'll relay.
+If you have questions about any of these changes — or if you'd like to push back on any of them — Osiris's the bridge for now (until the GitHub-collaborator setup lands). Send her your read and she'll relay.
 
 Looking forward to working together.
 
