@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- STAGING: Decks are URL-shareable assets, not nav-linked. Keep out of search index. -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>For Creators &mdash; ImagineBC</title>
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <meta property="og:title" content="ImagineBC for Creators &mdash; Build a destination, not a channel.">
+    <meta property="og:description" content="Direct cash from your audience. Referral income for life. Sponsor-funded reach. No algorithm tax. A town where your fans actually have money to spend on you.">
+    <meta property="og:image" content="../images/hero-illustration.png">
+    <meta property="og:type" content="website">
+    <meta name="description" content="ImagineBC for creators. Four real revenue streams. No algorithm tax. Identity-verified audience. Cash out direct to local rails. Welcome to the platform that aligns with you, not against you.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900;900&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & TOKENS === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1420;
+            --bg-card: #151c2c;
+            --text-primary: #f0f2f5;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-teal: #56AF9B;
+            --accent-gold: #F39C12;
+            --accent-blue: #4A90E2;
+            --accent-red: #E74C3C;
+            --accent-violet: #A78BFA;
+            --accent-warning: #f48b6b;
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-accent: rgba(255,255,255,0.1);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-card: 0 12px 40px rgba(0,0,0,0.5);
+            --shadow-glow-teal: 0 0 56px rgba(86,175,155,0.28);
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y proximity;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === TYPOGRAPHY === */
+        .heading-display { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
+        .heading-display em { color: var(--accent-teal); font-style: italic; }
+
+        /* === DECK NAV / PROGRESS === */
+        .deck-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 28px;
+            background: linear-gradient(180deg, rgba(10,14,26,0.92) 0%, rgba(10,14,26,0.75) 100%);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .deck-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); }
+        .deck-brand img { width: 32px; height: 32px; border-radius: 8px; }
+        .deck-brand-text { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
+        .deck-tag {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--accent-teal);
+        }
+        .deck-progress {
+            position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+            height: 2px; background: rgba(255,255,255,0.04);
+        }
+        .deck-progress-bar {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
+            transition: width 0.18s linear;
+        }
+
+        /* === SLIDE BASE === */
+        .slide {
+            min-height: 100vh; padding: 100px 24px 72px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            scroll-snap-align: start;
+            position: relative; overflow: hidden;
+        }
+        .slide-content { max-width: 1040px; width: 100%; position: relative; z-index: 2; }
+        .slide-eyebrow {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+            text-transform: uppercase; margin-bottom: 22px;
+            color: var(--accent-teal);
+        }
+        .slide-eyebrow.warning { color: var(--accent-warning); }
+        .slide-eyebrow.gold { color: var(--accent-gold); }
+        .slide-eyebrow.blue { color: var(--accent-blue); }
+        .slide-eyebrow.violet { color: var(--accent-violet); }
+        .slide-headline {
+            font-family: 'Playfair Display', Georgia, serif; font-weight: 800;
+            font-size: clamp(2.2rem, 5.4vw, 4.2rem); line-height: 1.05;
+            margin-bottom: 26px; letter-spacing: -0.03em;
+        }
+        .slide-headline em { color: var(--accent-teal); font-style: italic; }
+        .slide-headline .warn { color: var(--accent-warning); font-style: italic; }
+        .slide-headline .gold { color: var(--accent-gold); }
+        .slide-headline .violet { color: var(--accent-violet); }
+        .slide-subhead {
+            color: var(--text-secondary); font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+            line-height: 1.65; margin-bottom: 32px; max-width: 760px;
+        }
+        .slide-subhead strong { color: var(--text-primary); font-weight: 600; }
+        .slide-body {
+            color: var(--text-primary); font-size: clamp(1rem, 1.45vw, 1.18rem);
+            line-height: 1.78; max-width: 760px;
+        }
+        .slide-body strong { color: var(--accent-teal); font-weight: 600; }
+
+        .slide-comparison {
+            margin-top: 36px; padding: 26px 32px;
+            background: rgba(86,175,155,0.06); border-left: 3px solid var(--accent-teal);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            max-width: 760px;
+        }
+        .slide-comparison-label {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+            text-transform: uppercase; color: var(--accent-teal); margin-bottom: 10px;
+        }
+        .slide-comparison-text {
+            font-size: 1.05rem; line-height: 1.65; color: var(--text-primary);
+        }
+        .slide-comparison-text strong { color: var(--accent-teal); font-weight: 700; }
+
+        /* === SCROLL REVEAL === */
+        .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: 0.08s; }
+        .reveal-d2 { transition-delay: 0.16s; }
+        .reveal-d3 { transition-delay: 0.24s; }
+        .reveal-d4 { transition-delay: 0.32s; }
+        .reveal-d5 { transition-delay: 0.4s; }
+        .reveal-d6 { transition-delay: 0.48s; }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 17px 38px; border-radius: 100px; font-size: 1rem;
+            font-weight: 700; text-decoration: none; cursor: pointer; border: none;
+            transition: all 0.35s var(--ease); position: relative; overflow: hidden;
+            letter-spacing: 0.01em;
+        }
+        .btn-primary { background: var(--accent-teal); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow-teal); }
+        .btn-large { padding: 22px 56px; font-size: 1.15rem; letter-spacing: 0.04em; text-transform: uppercase; }
+        .btn-secondary {
+            background: rgba(255,255,255,0.06); color: var(--text-primary);
+            border: 1px solid var(--border-accent);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        /* ============ SLIDE 1 — COLD OPEN ============ */
+        .slide-cold-open { text-align: center; padding-top: 0; }
+        .slide-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background: url('../images/hero-illustration.png') center 60%/cover no-repeat;
+            filter: brightness(0.42) saturate(1.05);
+            animation: heroZoom 32s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.07); }
+        }
+        .slide-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background:
+                radial-gradient(ellipse 60% 40% at 50% 50%, rgba(86,175,155,0.08) 0%, transparent 70%),
+                linear-gradient(180deg, rgba(10,14,26,0.65) 0%, rgba(10,14,26,0.45) 50%, rgba(10,14,26,0.95) 100%);
+        }
+        .cold-byline {
+            font-size: 0.85rem; letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--accent-teal); font-weight: 700; margin-bottom: 22px;
+        }
+        .cold-question {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-size: clamp(2.2rem, 5.6vw, 4.4rem); line-height: 1.16; font-weight: 800;
+            margin-bottom: 32px; letter-spacing: -0.025em;
+        }
+        .cold-question em { color: var(--accent-teal); font-style: italic; }
+        .cold-tag {
+            font-size: 1.1rem; color: var(--text-secondary); font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+        .cold-tag strong {
+            color: var(--text-primary); font-weight: 700;
+            font-family: 'Playfair Display', serif; font-size: 1.25rem;
+        }
+        .scroll-hint {
+            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+            color: var(--text-muted); font-size: 0.72rem; letter-spacing: 0.2em;
+            text-transform: uppercase; font-weight: 700;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            z-index: 3;
+        }
+        .scroll-hint::after {
+            content: ''; width: 1px; height: 36px;
+            background: linear-gradient(180deg, var(--accent-teal), transparent);
+            animation: scrollPulse 2.4s ease-in-out infinite;
+        }
+        @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1.3); transform-origin: top; } }
+
+        /* ============ SLIDE 2 — RECOGNITION ============ */
+        .pain-list {
+            list-style: none; margin-top: 28px; max-width: 780px;
+            display: flex; flex-direction: column; gap: 18px;
+        }
+        .pain-item {
+            display: flex; gap: 18px; align-items: flex-start;
+            padding: 18px 22px; border-radius: var(--radius-md);
+            background: rgba(244,139,107,0.04); border-left: 3px solid var(--accent-warning);
+        }
+        .pain-item-bullet {
+            color: var(--accent-warning); font-size: 1.4rem; line-height: 1; flex-shrink: 0;
+            margin-top: 2px; font-weight: 700;
+        }
+        .pain-item-text { font-size: 1.02rem; line-height: 1.6; color: var(--text-primary); }
+        .pain-item-text strong { color: var(--accent-warning); font-weight: 700; font-style: italic; }
+
+        /* ============ SLIDE 3 — THE EXTRACTION ============ */
+        .extraction-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+            margin-top: 36px; max-width: 880px;
+        }
+        .extraction-card {
+            padding: 32px 28px; border-radius: var(--radius-md);
+        }
+        .extraction-card.them {
+            background: rgba(244,139,107,0.05); border: 1px solid rgba(244,139,107,0.2);
+        }
+        .extraction-card.us {
+            background: rgba(86,175,155,0.06); border: 1px solid rgba(86,175,155,0.25);
+        }
+        .extraction-card-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; margin-bottom: 14px;
+        }
+        .extraction-card.them .extraction-card-label { color: var(--accent-warning); }
+        .extraction-card.us .extraction-card-label { color: var(--accent-teal); }
+        .extraction-card-title {
+            font-family: 'Playfair Display', serif; font-weight: 800;
+            font-size: 1.45rem; line-height: 1.2; margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .extraction-card.them .extraction-card-title { color: var(--accent-warning); }
+        .extraction-card.us .extraction-card-title { color: var(--accent-teal); }
+        .extraction-card-body { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.65; }
+        .extraction-card-body strong { color: var(--text-primary); font-weight: 600; }
+        .extraction-closer {
+            margin-top: 38px; text-align: center;
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-size: clamp(1.3rem, 2.4vw, 1.7rem); line-height: 1.4; color: var(--text-primary);
+        }
+        .extraction-closer em { color: var(--accent-teal); font-style: italic; font-weight: 700; }
+
+        /* ============ SLIDE 4 — INTRODUCING ============ */
+        .slide-intro {
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, #0f1832 50%, var(--bg-primary) 100%);
+        }
+        .slide-intro::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(86,175,155,0.07) 0%, transparent 70%);
+        }
+        .intro-byline {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            color: var(--accent-teal); font-size: clamp(1rem, 1.4vw, 1.2rem);
+            margin-top: 32px; letter-spacing: 0.02em;
+        }
+
+        /* ============ SLIDE 5 — YOUR BUILDING ============ */
+        .slide-split {
+            display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center;
+            max-width: 1080px;
+        }
+        .slide-split-visual {
+            border-radius: var(--radius-lg); overflow: hidden;
+            border: 1px solid rgba(74,144,226,0.16);
+            aspect-ratio: 4/3;
+        }
+        .slide-split-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ============ SLIDE 6 — FOUR REVENUE STREAMS ============ */
+        .revenue-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+            margin-top: 36px; max-width: 980px;
+        }
+        .revenue-card {
+            padding: 30px 28px; border-radius: var(--radius-md);
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            transition: all 0.4s var(--ease);
+        }
+        .revenue-card:hover {
+            border-color: rgba(86,175,155,0.3);
+            transform: translateY(-5px); box-shadow: var(--shadow-card);
+        }
+        .revenue-card-num {
+            font-family: 'Playfair Display', serif; font-weight: 800;
+            font-size: 1.6rem; color: var(--accent-teal); margin-bottom: 6px; line-height: 1;
+        }
+        .revenue-card-title {
+            font-family: 'Playfair Display', serif; font-weight: 800;
+            font-size: 1.3rem; line-height: 1.2; margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .revenue-card-text {
+            color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65;
+        }
+        .revenue-card-text strong { color: var(--text-primary); font-weight: 600; }
+        .revenue-closer {
+            margin-top: 36px; text-align: center;
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--text-secondary);
+        }
+        .revenue-closer strong { color: var(--accent-teal); font-style: normal; font-weight: 800; }
+
+        /* ============ SLIDE 7-9 — DEEP DIVE COMMON ============ */
+        .deep-dive { text-align: left; max-width: 880px; }
+
+        /* ============ GUARANTEE BLOCK (10% creator floor) ============ */
+        .guarantee-block {
+            margin-top: 36px; padding: 32px 36px;
+            background: linear-gradient(135deg, rgba(243,156,18,0.08), rgba(86,175,155,0.08));
+            border: 1px solid rgba(243,156,18,0.32);
+            border-radius: var(--radius-md);
+            max-width: 800px;
+            display: flex; gap: 32px; align-items: center;
+        }
+        .guarantee-stat {
+            display: flex; flex-direction: column; align-items: center;
+            flex-shrink: 0; padding-right: 32px;
+            border-right: 1px solid rgba(255,255,255,0.12);
+        }
+        .guarantee-num {
+            font-family: 'Playfair Display', serif; font-weight: 800;
+            font-size: clamp(3.4rem, 6.5vw, 5.2rem); line-height: 1;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-teal));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; letter-spacing: -0.02em;
+        }
+        .guarantee-unit {
+            font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--text-muted); margin-top: 6px; font-weight: 700;
+        }
+        .guarantee-content { flex: 1; }
+        .guarantee-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--accent-gold); margin-bottom: 10px;
+        }
+        .guarantee-text {
+            font-size: 1.05rem; line-height: 1.65; color: var(--text-primary);
+        }
+        .guarantee-text strong { color: var(--accent-gold); font-weight: 700; }
+        @media (max-width: 700px) {
+            .guarantee-block { flex-direction: column; gap: 22px; padding: 28px 24px; align-items: stretch; }
+            .guarantee-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding-right: 0; padding-bottom: 22px; }
+        }
+
+        /* ============ SLIDE 10 — NO ALGORITHM ============ */
+        /* Uses standard slide layout */
+
+        /* ============ SLIDE 11 — REAL CASH ============ */
+        .rails-row {
+            display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px;
+        }
+        .rail-pill {
+            padding: 10px 22px; border-radius: 100px;
+            background: rgba(86,175,155,0.08); border: 1px solid rgba(86,175,155,0.22);
+            color: var(--accent-teal); font-weight: 600; font-size: 0.92rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ============ SLIDE 12 — QUALITY BAR ============ */
+        /* Uses standard slide layout */
+
+        /* ============ SLIDE 13 — WHO'S HERE ============ */
+        .creators-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+            margin-top: 40px; max-width: 980px;
+        }
+        .creator-tile {
+            padding: 26px 22px; border-radius: var(--radius-md);
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            transition: all 0.3s var(--ease);
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .creator-tile:hover {
+            border-color: rgba(86,175,155,0.3); transform: translateY(-3px);
+        }
+        .creator-tile-name {
+            font-family: 'Playfair Display', serif; font-weight: 800;
+            font-size: 1.15rem; line-height: 1.2; letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+        .creator-tile-genre {
+            font-size: 0.78rem; color: var(--accent-teal); font-weight: 600;
+            letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .creator-tile.more {
+            background: rgba(86,175,155,0.06); border: 1px dashed rgba(86,175,155,0.3);
+            justify-content: center; align-items: center; text-align: center;
+        }
+        .creator-tile.more .creator-tile-name { color: var(--accent-teal); font-style: italic; font-size: 1.05rem; }
+        .creator-tile.more .creator-tile-genre { color: var(--text-muted); }
+        .creators-closer {
+            margin-top: 36px; text-align: center;
+            font-size: 1.05rem; color: var(--text-secondary); line-height: 1.65;
+        }
+        .creators-closer strong { color: var(--text-primary); font-weight: 700; }
+
+        /* ============ SLIDE 14 — START THE TIMER (FINAL) ============ */
+        .slide-final {
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, #0f1832 60%, var(--bg-primary) 100%);
+        }
+        .slide-final::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(86,175,155,0.1) 0%, transparent 70%);
+        }
+        .final-headline {
+            font-family: 'Playfair Display', serif; font-weight: 800;
+            font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 1.05;
+            margin-bottom: 22px; letter-spacing: -0.03em;
+        }
+        .final-headline em { color: var(--accent-teal); font-style: italic; }
+        .final-sub {
+            color: var(--text-secondary); font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+            max-width: 640px; margin: 0 auto 44px; line-height: 1.65;
+        }
+        .final-sub strong { color: var(--text-primary); font-weight: 700; }
+        .final-cta-block { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+        .final-cta-tag {
+            font-size: 0.85rem; color: var(--text-muted);
+            font-style: italic; letter-spacing: 0.04em;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 900px) {
+            .extraction-grid { grid-template-columns: 1fr; }
+            .slide-split { grid-template-columns: 1fr; gap: 36px; }
+            .slide-split-visual { order: -1; }
+            .revenue-grid { grid-template-columns: 1fr; }
+            .creators-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .deck-nav { padding: 12px 18px; }
+            .deck-brand-text { font-size: 1rem; }
+            .deck-tag { font-size: 0.65rem; }
+            .slide { padding: 92px 20px 56px; }
+            .pain-item { padding: 14px 18px; }
+            .creators-grid { grid-template-columns: 1fr; }
+            .extraction-card { padding: 26px 22px; }
+            .revenue-card { padding: 26px 22px; }
+            .btn-large { padding: 18px 38px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DECK NAV -->
+    <nav class="deck-nav">
+        <a href="../index.html" class="deck-brand">
+            <img src="../images/logo.png" alt="ImagineBC">
+            <span class="deck-brand-text">ImagineBC</span>
+        </a>
+        <span class="deck-tag">For Creators</span>
+    </nav>
+    <div class="deck-progress"><div class="deck-progress-bar" id="progressBar"></div></div>
+
+    <!-- ============ SLIDE 1 — COLD OPEN ============ -->
+    <section class="slide slide-cold-open">
+        <div class="slide-bg"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+            <div class="cold-byline">For Creators</div>
+            <h1 class="cold-question">What if your fans actually had <em>money</em><br>to spend on you?</h1>
+            <p class="cold-tag">Welcome to <strong>ImagineBC</strong>.</p>
+        </div>
+        <div class="scroll-hint">Scroll</div>
+    </section>
+
+    <!-- ============ SLIDE 2 — RECOGNITION ============ -->
+    <section class="slide">
+        <div class="slide-content">
+            <div class="slide-eyebrow warning reveal">You've Felt This</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                You don't owe anyone an explanation<br>for being <span class="warn">tired of it</span>.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2">
+                Every creator at your level knows the loop. You feed every algorithm, you tour every platform, you build the audience &mdash; and somehow you're still negotiating for scraps.
+            </p>
+            <ul class="pain-list">
+                <li class="pain-item reveal reveal-d2">
+                    <span class="pain-item-bullet">&times;</span>
+                    <span class="pain-item-text">Only <strong>a fraction</strong> of your followers ever see what you post.</span>
+                </li>
+                <li class="pain-item reveal reveal-d3">
+                    <span class="pain-item-bullet">&times;</span>
+                    <span class="pain-item-text">An algorithm decides <strong>whether you exist this week</strong>.</span>
+                </li>
+                <li class="pain-item reveal reveal-d3">
+                    <span class="pain-item-bullet">&times;</span>
+                    <span class="pain-item-text">You can be <strong>demonetized overnight</strong> for things you didn't even write.</span>
+                </li>
+                <li class="pain-item reveal reveal-d4">
+                    <span class="pain-item-bullet">&times;</span>
+                    <span class="pain-item-text">Your audience is <strong>scattered across half a dozen apps</strong> you have to feed every single day.</span>
+                </li>
+                <li class="pain-item reveal reveal-d4">
+                    <span class="pain-item-bullet">&times;</span>
+                    <span class="pain-item-text">Months of work, days of payout &mdash; <strong>then nothing</strong>.</span>
+                </li>
+                <li class="pain-item reveal reveal-d5">
+                    <span class="pain-item-bullet">&times;</span>
+                    <span class="pain-item-text">On Patreon, on Cameo, on Substack &mdash; you're <strong>invisible</strong>. There's no in-platform discovery. Your audience finds you somewhere else, then has to find you again on the platform.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 3 — THE EXTRACTION ============ -->
+    <section class="slide">
+        <div class="slide-content">
+            <div class="slide-eyebrow warning reveal">The Math You've Been Living With</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                Every other platform takes <span class="warn">most</span> of what your audience pays.<br>We take a <em>fraction</em>.
+            </h2>
+            <div class="extraction-grid">
+                <div class="extraction-card them reveal reveal-d2">
+                    <div class="extraction-card-label">The Old Math</div>
+                    <h3 class="extraction-card-title">A meaningful slice goes to the platform.</h3>
+                    <p class="extraction-card-body">
+                        Most major creator platforms keep a <strong>significant share of every dollar your audience spends on you</strong>. Then there's the throttling: only a fraction of your followers see what you post, so even what reaches you reaches only a fraction of your reach.
+                    </p>
+                </div>
+                <div class="extraction-card us reveal reveal-d3">
+                    <div class="extraction-card-label">The New Math</div>
+                    <h3 class="extraction-card-title">A small fraction goes to us. The rest is yours.</h3>
+                    <p class="extraction-card-body">
+                        We take a <strong>small platform fee</strong>. The rest stays with you &mdash; cashed out direct to your local rails. And because there's no algorithm gatekeeping reach, your followers see you when they walk past your building.
+                    </p>
+                </div>
+            </div>
+            <p class="extraction-closer reveal reveal-d4">
+                You've been the product. Time to be <em>the proprietor</em>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 4 — INTRODUCING ============ -->
+    <section class="slide slide-intro">
+        <div class="slide-content" style="text-align:center;">
+            <div class="slide-eyebrow reveal">Welcome To</div>
+            <h2 class="slide-headline reveal reveal-d1" style="text-align:center;">
+                A real <em>town</em>.<br>
+                Real cash. Real audiences.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2" style="margin-left:auto; margin-right:auto;">
+                Your fans live here. You have your own building. Every interaction inside puts cash in your pocket &mdash; from your audience, from sponsors, from the people you bring in.
+            </p>
+            <p class="intro-byline reveal reveal-d3">
+                ImagineBC. The Imaginarium. A platform that pays you, not the other way around.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 5 — YOU GET A BUILDING ============ -->
+    <section class="slide">
+        <div class="slide-content">
+            <div class="slide-split">
+                <div>
+                    <div class="slide-eyebrow blue reveal">A Place, Not a Feed</div>
+                    <h2 class="slide-headline reveal reveal-d1">
+                        You get a <em>building</em>.<br>Not a channel.
+                    </h2>
+                    <p class="slide-subhead reveal reveal-d2">
+                        Other platforms make you another row in an algorithmic feed. Here you're a <strong>destination</strong> &mdash; a real place inside the town, with your own door, your own walls, your own rules.
+                    </p>
+                    <p class="slide-body reveal reveal-d3">
+                        Members walk to your building. Your custom interior. Your content, your tone, your community. The platform doesn't gate the path to your front door &mdash; you do.
+                    </p>
+                    <div class="slide-comparison reveal reveal-d4">
+                        <div class="slide-comparison-label">Compared to everywhere else</div>
+                        <p class="slide-comparison-text">
+                            One creator on YouTube is one of <strong>150 million</strong> similar channels &mdash; competing for an algorithm's attention. One creator in the Imaginarium is one building in their town. <strong>Not a thumbnail. A doorway.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="slide-split-visual reveal reveal-d2">
+                    <img src="../images/creators-panel.png" alt="A creator's custom building interior in the Imaginarium" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 6 — FOUR REVENUE STREAMS ============ -->
+    <section class="slide">
+        <div class="slide-content" style="text-align:center;">
+            <div class="slide-eyebrow gold reveal">The Math Of Earning Here</div>
+            <h2 class="slide-headline reveal reveal-d1" style="text-align:center;">
+                Four ways you earn.<br>Not one.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2" style="margin-left:auto; margin-right:auto;">
+                Most platforms give you one revenue stream &mdash; usually a tiny share of ad revenue. We give you <strong>four independent streams</strong> running in parallel, every day you're on the platform.
+            </p>
+            <div class="revenue-grid">
+                <div class="revenue-card reveal reveal-d2">
+                    <div class="revenue-card-num">01</div>
+                    <h3 class="revenue-card-title">Direct Cash from Your Audience</h3>
+                    <p class="revenue-card-text">Your members earn money on the platform. Then they <strong>spend those earnings on you</strong> &mdash; tipping, subscribing, accessing premium content. By design, <strong>at least 10%</strong> of every brand dollar in the platform must flow to creators &mdash; a structural floor you'd never get anywhere else.</p>
+                </div>
+                <div class="revenue-card reveal reveal-d3">
+                    <div class="revenue-card-num">02</div>
+                    <h3 class="revenue-card-title">Referral Income, For Life</h3>
+                    <p class="revenue-card-text">Bring your following onto the platform as their referrer. <strong>You earn passive income</strong> from every campaign they complete and every credit they spend &mdash; for as long as they're members.</p>
+                </div>
+                <div class="revenue-card reveal reveal-d3">
+                    <div class="revenue-card-num">03</div>
+                    <h3 class="revenue-card-title">Sponsor-Funded Reach</h3>
+                    <p class="revenue-card-text">Brands fund member access to creator content. <strong>Every time a member consumes your work, you get paid.</strong> A revenue stream that doesn't exist on any other platform.</p>
+                </div>
+                <div class="revenue-card reveal reveal-d4">
+                    <div class="revenue-card-num">04</div>
+                    <h3 class="revenue-card-title">Engagement Rewards</h3>
+                    <p class="revenue-card-text">The town pays creators to bring it to life. Achievement-driven incentives reward you for sustained activity, members served, community-building &mdash; <strong>real money for real contribution</strong>.</p>
+                </div>
+            </div>
+            <p class="revenue-closer reveal reveal-d5">
+                Where every other platform gives you <strong>one</strong> way to earn, we give you <strong>four</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 7 — DEEP DIVE: DIRECT CASH ============ -->
+    <section class="slide">
+        <div class="slide-content deep-dive">
+            <div class="slide-eyebrow reveal">Stream 01 &mdash; Direct Cash</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                Your members earn money here.<br>
+                Then they spend it on <em>you</em>.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2">
+                That's the entire loop. Brands fund campaigns. Members complete those campaigns and earn. Members spend their earnings on the creators they love. Creators cash out direct.
+            </p>
+            <p class="slide-body reveal reveal-d3">
+                <strong>You don't depend on a platform's ad-revenue share.</strong> You don't depend on a sponsor cycle. You're paid by the actual humans who chose to walk to your door &mdash; with money those same humans earned by being on the platform with you.
+            </p>
+            <div class="guarantee-block reveal reveal-d4">
+                <div class="guarantee-stat">
+                    <span class="guarantee-num">10%</span>
+                    <span class="guarantee-unit">Floor</span>
+                </div>
+                <div class="guarantee-content">
+                    <div class="guarantee-label">The Structural Guarantee</div>
+                    <p class="guarantee-text">
+                        By design, <strong>at least 10% of every dollar brands inject into the platform must be spent on creator content</strong>. Not a marketing claim. Not a goal. A rule baked into the economy &mdash; brands literally cannot put money in without that share flowing to you and your peers.
+                    </p>
+                </div>
+            </div>
+            <div class="slide-comparison reveal reveal-d5">
+                <div class="slide-comparison-label">Compared to the old way</div>
+                <p class="slide-comparison-text">
+                    Other platforms pay creators a <strong>fraction of ad revenue</strong> &mdash; pennies for thousands of views, with no floor and no guarantee. Here, every member who shows up is a paying member by design, and a structural minimum of brand spend is contractually owed to creator content.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 8 — DEEP DIVE: REFERRAL INCOME ============ -->
+    <section class="slide">
+        <div class="slide-content deep-dive">
+            <div class="slide-eyebrow gold reveal">Stream 02 &mdash; Referral Income</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                Your following is your <span class="gold">annuity</span>.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2">
+                Bring your audience over. They earn from campaigns. They spend on creators (sometimes you, sometimes others &mdash; doesn't matter). And <strong>you earn passive income from their on-platform activity</strong>, for as long as they're members.
+            </p>
+            <p class="slide-body reveal reveal-d3">
+                The loyalty you've already built &mdash; that thing every other platform takes for granted and pays you nothing for &mdash; <strong>becomes a long-term, recurring revenue stream</strong>. Not a signup bonus. Not a one-time bump. An annuity.
+            </p>
+            <div class="slide-comparison reveal reveal-d4">
+                <div class="slide-comparison-label">Compared to the old way</div>
+                <p class="slide-comparison-text">
+                    On every other platform, your community is <strong>their asset</strong>. Subscriber list, follower count, engagement graph &mdash; theirs. Here, your referred members <strong>pay you back forever</strong>. Your community is your asset, in cash form.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 9 — DEEP DIVE: SPONSOR-FUNDED REACH ============ -->
+    <section class="slide">
+        <div class="slide-content deep-dive">
+            <div class="slide-eyebrow violet reveal">Stream 03 &mdash; Sponsor-Funded Reach</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                Brands pay <span class="violet">for the audience to come to you</span>.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2">
+                Sponsors on the platform fund member access to creator content. When members spend that sponsor-funded access on your work, <strong>you get paid</strong>. Every time. The brand foots the bill so the audience reaches you for free.
+            </p>
+            <p class="slide-body reveal reveal-d3">
+                It's a third revenue stream that <strong>does not exist anywhere else</strong>. Patreon doesn't have it. YouTube doesn't have it. TikTok, Instagram, Substack, Cameo &mdash; none of them. It's structurally unique to a platform where brands, members, and creators all share the same flywheel.
+            </p>
+            <div class="slide-comparison reveal reveal-d4">
+                <div class="slide-comparison-label">Compared to the old way</div>
+                <p class="slide-comparison-text">
+                    Where else does <strong>the brand pay for the audience to come to you</strong>? Nowhere. Sponsorship on every other platform means *you* serve the brand's content to *your* audience. Here, the brand serves *your* content to *the* audience. The flow flips.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 10 — NO ALGORITHM ============ -->
+    <section class="slide">
+        <div class="slide-content">
+            <div class="slide-eyebrow blue reveal">No Algorithm. No Throttling. No Gatekeepers.</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                Your followers <em>always</em> see you.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2">
+                Discovery here is <strong>spatial, not algorithmic</strong>. Members walk past your building on their way to the Theater or the Mart. Friends recommend you to other members. The town's quality bar means your work isn't drowning in algorithm-bait. There's no platform middleman between you and your audience.
+            </p>
+            <p class="slide-body reveal reveal-d3">
+                Take a week off. Skip a posting cadence. Disappear for a month. <strong>You don't get demoted.</strong> Your building is still there. Your followers still find you. Reach is never gated by an algorithm that wants you posting every six hours forever.
+            </p>
+            <div class="slide-comparison reveal reveal-d4">
+                <div class="slide-comparison-label">Compared to the old way</div>
+                <p class="slide-comparison-text">
+                    Where other platforms show your work to <strong>a fraction of your followers</strong> &mdash; here you reach <strong>100% of yours</strong>, every time, by default. The audience you built is the audience that finds you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 11 — REAL PEOPLE, REAL CASH ============ -->
+    <section class="slide">
+        <div class="slide-content">
+            <div class="slide-eyebrow reveal">Real Humans. Real Cash. Local Rails.</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                Identity-verified members.<br>
+                Cash you can <em>actually spend</em>.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2">
+                Every member on the platform is identity-verified. <strong>No bots. No fake engagement. No follower-farming.</strong> When your work earns 1,000 reactions, that's 1,000 real humans &mdash; not a botnet someone bought to game the algorithm.
+            </p>
+            <p class="slide-body reveal reveal-d3">
+                Cash out direct, in your local currency, to the rails you actually use:
+            </p>
+            <div class="rails-row">
+                <span class="rail-pill reveal reveal-d3">M-Pesa</span>
+                <span class="rail-pill reveal reveal-d3">MTN MoMo</span>
+                <span class="rail-pill reveal reveal-d4">Mobile Wallets</span>
+                <span class="rail-pill reveal reveal-d4">Bank Transfer</span>
+                <span class="rail-pill reveal reveal-d4">Shoprite</span>
+            </div>
+            <div class="slide-comparison reveal reveal-d5">
+                <div class="slide-comparison-label">Compared to the old way</div>
+                <p class="slide-comparison-text">
+                    Where other platforms make you wait, take their cut, convert through their FX, and pay you weeks later in a currency your bank doesn't love &mdash; here it's <strong>local money in local accounts</strong>, with most of what your audience paid landing with you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 12 — QUALITY BAR ============ -->
+    <section class="slide">
+        <div class="slide-content">
+            <div class="slide-eyebrow reveal">The Quality Bar</div>
+            <h2 class="slide-headline reveal reveal-d1">
+                No <em>cats rolling yarn</em>.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2">
+                Every creator who joins clears a quality bar. We curate the platform deliberately so the signal stays high. <strong>Your audience finds YOU &mdash; not noise</strong>.
+            </p>
+            <p class="slide-body reveal reveal-d3">
+                Other platforms reward bottom-feeding for attention. Algorithm-bait drowns substance. Here, you're not competing with infinite scroll filler &mdash; you're sharing a town with creators who also showed up to do real work.
+            </p>
+            <div class="slide-comparison reveal reveal-d4">
+                <div class="slide-comparison-label">Compared to the old way</div>
+                <p class="slide-comparison-text">
+                    Where other platforms drown your work in <strong>infinite algorithm-bait</strong>, here the platform's quality bar means your work cuts through. Less noise. More signal. <strong>More of your audience actually reaches you.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 13 — WHO'S ALREADY HERE ============ -->
+    <section class="slide">
+        <div class="slide-content" style="text-align:center;">
+            <div class="slide-eyebrow reveal">You'd Be In Good Company</div>
+            <h2 class="slide-headline reveal reveal-d1" style="text-align:center;">
+                Music. Comedy. Gaming. Culture.<br>
+                The community is <em>forming now</em>.
+            </h2>
+            <p class="slide-subhead reveal reveal-d2" style="margin-left:auto; margin-right:auto;">
+                Creators across genres are already inside &mdash; building their buildings, bringing their audiences, locking in their referral annuities while it's still early.
+            </p>
+            <div class="creators-grid">
+                <div class="creator-tile reveal reveal-d2">
+                    <div class="creator-tile-name">Slikour Onlife</div>
+                    <div class="creator-tile-genre">Music Platform</div>
+                </div>
+                <div class="creator-tile reveal reveal-d2">
+                    <div class="creator-tile-name">Timmy Blanco</div>
+                    <div class="creator-tile-genre">Hip-Hop</div>
+                </div>
+                <div class="creator-tile reveal reveal-d3">
+                    <div class="creator-tile-name">DJ Kace</div>
+                    <div class="creator-tile-genre">DJ</div>
+                </div>
+                <div class="creator-tile reveal reveal-d3">
+                    <div class="creator-tile-name">Shake the Block DJs</div>
+                    <div class="creator-tile-genre">DJ Collective</div>
+                </div>
+                <div class="creator-tile reveal reveal-d4">
+                    <div class="creator-tile-name">Terence Creative</div>
+                    <div class="creator-tile-genre">Comedy</div>
+                </div>
+                <div class="creator-tile reveal reveal-d4">
+                    <div class="creator-tile-name">Thee Beast</div>
+                    <div class="creator-tile-genre">E-Gaming</div>
+                </div>
+                <div class="creator-tile more reveal reveal-d5">
+                    <div class="creator-tile-name">+ many more</div>
+                    <div class="creator-tile-genre">growing every week</div>
+                </div>
+                <div class="creator-tile more reveal reveal-d5">
+                    <div class="creator-tile-name">Maybe you next</div>
+                    <div class="creator-tile-genre">Your genre, your terms</div>
+                </div>
+                <div class="creator-tile more reveal reveal-d5">
+                    <div class="creator-tile-name">A door is open</div>
+                    <div class="creator-tile-genre">No waitlist for the early creators</div>
+                </div>
+            </div>
+            <p class="creators-closer reveal reveal-d6">
+                Every name you don't see yet is a building you'd be next to. <strong>Early creators get prime real estate</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ SLIDE 14 — START THE TIMER ============ -->
+    <section class="slide slide-final">
+        <div class="slide-content">
+            <div class="slide-eyebrow reveal">Start The Timer</div>
+            <h2 class="final-headline reveal reveal-d1">
+                Your following is<br>your <em>annuity</em>.
+            </h2>
+            <p class="final-sub reveal reveal-d2">
+                Every day you wait is a day they're <strong>not earning for you</strong>. Walk through it. Look around. See if it feels like home.
+            </p>
+            <div class="final-cta-block reveal reveal-d3">
+                <a href="#" class="btn btn-primary btn-large">Visit The Town</a>
+                <p class="final-cta-tag">No commitment. No signup wall. Just walk in and look.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Progress bar
+        const progressBar = document.getElementById('progressBar');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = pct + '%';
+        };
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+    </script>
+
+</body>
+</html>
