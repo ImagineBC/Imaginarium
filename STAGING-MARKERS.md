@@ -2,7 +2,7 @@
 
 This file tracks every placeholder, staging block, and known-incomplete item that must be addressed before the site goes fully public. Search the codebase for `STAGING` to find code-level markers; this doc tracks the broader checklist.
 
-Last audited: 2026-04-26 (Ember 11 polish pass).
+Last audited: 2026-04-27 (visitor center URL wired + Erik's calls on placeholders & contact form).
 
 ---
 
@@ -21,15 +21,18 @@ Password value (for sharing with reviewers): `Spurs!1111` (encoded as character 
 
 ---
 
-## 🔗 Visit The Town CTAs (17 instances of `href="#"`)
+## 🔗 Visit The Town CTAs — ✅ wired (2026-04-27)
 
-The hero, nav, audience tabs, every section closer, and the final CTA all point at `href="#"` because the visitor center URL is not yet known. When Erik provides the visitor center URL:
+All 11 Visit-The-Town CTAs now route to **`https://frontend-dev.imaginebc.io/visit`** (Erik confirmed the visitor center URL on 2026-04-27). They cover: nav primary, hero primary, every end-of-section transition CTA (Flywheel, Town, X-Terminals, Anchor Tiers, Beachhead), all five audience-tab CTAs, and the final CTA.
 
-1. Find every `href="#"` — there are **17 instances** as of this audit
-2. Find-and-replace them all with the actual visitor center URL
-3. The single search-and-replace assumes ALL `href="#"` should become the visitor center URL — verify this assumption holds for every instance before bulk-replacing (no other use of `href="#"` is intended in the codebase as of 2026-04-26)
+The CTA copy varies by audience-tab context (e.g., *"Visit The Town — See How Places Are Built"* for Creators, *"...See How Campaigns Run"* for Brands), but every instance routes to the same visitor center URL.
 
-The CTA copy varies by audience-tab context (e.g., "Visit The Town — See How Places Are Built" for Creators, "...See How Campaigns Run" for Brands) but they should all route to the same visitor center.
+**Note on the original audit count.** The earlier audit said "17 instances of `href=\"#\"` should all become the visitor center URL." On verification, only **11** were Visit-The-Town CTAs. The remaining **6** are:
+
+- 2× `nav-brand` links (logo + name; serve as scroll-to-top, intentionally `href="#"`)
+- 4× footer placeholders (Contact, Press, Privacy, Terms — separate concern, addressed when those pages exist)
+
+`grep -n 'href="#"' index.html` should now return exactly **6** matches. If it returns more, audit before assuming intent.
 
 ---
 
@@ -48,16 +51,16 @@ GitHub Pages is currently serving from `https://imaginebc.github.io/Imaginarium/
 
 ---
 
-## 🤝 Anchor-partner placeholders
+## 🤝 Anchor-partner placeholders — kept by design (2026-04-27)
 
-Two anchor-partner names are currently rendered as generic placeholders pending public-naming permission:
+Two anchor-partner references render as generic placeholders. **Per Erik's decision on 2026-04-27, these stay as placeholders permanently** — the audience-targeted decks Erik handed to Osiris already address how named-partner mentions are handled across the marketing surfaces, so the public website intentionally keeps category-level framing.
 
-| Placeholder | Location(s) | What needs to swap |
+| Placeholder | Location(s) | Status |
 |---|---|---|
-| `Tier-1 Sportsbook (Kenya)` | `index.html` line 807 (Social Proof strip) and line 1495 (Kenya country detail) — *appears as "tier-1 sportsbook" in the second instance* | Replace with the actual sportsbook brand name once Kenya partner has approved public naming |
-| `major comedy creator` | `index.html` line 1505 (Nigeria country detail) | Replace with the actual creator name once Nigeria partner has approved public naming |
+| `Tier-1 Sportsbook (Kenya)` | Community Builders strip + Kenya country detail | Keep |
+| `major comedy creator` | Nigeria country detail | Keep |
 
-Both placeholders are flagged in Erik's Claude's original handoff note. When swapping, audit nearby copy to make sure the new name fits the surrounding sentence cleanly.
+No swap needed. If a future partner explicitly wants public attribution on the website itself, that's a content edit, not a launch blocker.
 
 ---
 
@@ -76,10 +79,10 @@ When the visitor center URL exists AND the domain is pointed AND public-naming p
 - [ ] Remove password gate CSS (~line 660)
 - [ ] Remove password gate HTML + script (~line 706)
 - [ ] Verify zero `STAGING` matches: `grep -c "STAGING" index.html` returns `0`
-- [ ] Replace all 17 `href="#"` with the live visitor center URL
-- [ ] Verify zero `href="#"` matches in `index.html`
+- [x] Wire Visit The Town CTAs to visitor center URL (`https://frontend-dev.imaginebc.io/visit`) — ✅ done 2026-04-27 (11 of 11 wired)
+- [ ] Audit the remaining 6 `href="#"` (4 footer placeholders + 2 brand scroll-to-top links) — addressed when Contact/Press/Privacy/Terms pages exist
 - [ ] Confirm `http://imaginebc.net/` is correct (or update to `https://` + final domain)
-- [ ] Swap anchor-partner placeholders (Tier-1 Sportsbook, major comedy creator)
+- [x] Anchor-partner placeholders — kept permanent by design (no swap needed) ✅ 2026-04-27
 - [ ] Manual smoke test: load on desktop + mobile, click every CTA, verify all images render
 - [ ] Submit sitemap to Google Search Console once indexable
 - [ ] Update `og:image` with a fresh dated banner if the launch warrants distinctive social-share art
