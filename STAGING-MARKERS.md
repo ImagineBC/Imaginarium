@@ -1,73 +1,55 @@
-# STAGING MARKERS — Pre-Launch Checklist
+# STAGING MARKERS — Launch Status
 
-This file tracks every placeholder, staging block, and known-incomplete item that must be addressed before the site goes fully public. Search the codebase for `STAGING` to find code-level markers (should now be zero); this doc tracks the broader checklist.
+This file used to track pre-launch placeholders and staging blocks. **The site is now publicly launched at https://imaginebc.net/ (2026-05-14).** This file now serves as a reference for what was done and what's still on the punch list for ongoing maintenance.
 
-Last audited: 2026-05-14 (staging gate removed; Visit-The-Town CTAs swapped to local `/visit.html` placeholder pending production Town readiness).
-
----
-
-## 🚪 Password gate + indexing protection — ✅ removed (2026-05-14)
-
-Both the password gate (`Spurs!1111`) and the `noindex` meta tags have been **fully removed**. The site is now publicly accessible and indexable.
-
-Removed:
-- The 3-line `noindex` meta block (was lines ~6-8 of `index.html`)
-- The entire `.pw-gate*` CSS block (~42 lines, was around line 660)
-- The password gate HTML markup + companion script (~34 lines, was around line 706)
-
-Verification (post-removal): `grep -cE "(STAGING|pw-gate|pwGate|Spurs|noindex|nofollow)" index.html` should return **`0`**.
-
-If preview-only access is ever needed again, the previous gate code is preserved in commit history (look for the commit titled "Add password gate and noindex for staging").
+Last audited: 2026-05-14 (custom domain live; HTTPS enforced; Visit-The-Town CTAs routed to Erik's production visitor center).
 
 ---
 
-## 🏗️ Visit The Town — temporary `/visit.html` placeholder (2026-05-14)
+## ✅ Launched (2026-05-14)
 
-Erik's production visitor center isn't ready yet, so the 11 Visit-The-Town CTAs now point at a **local Coming Soon page at `/visit.html`** (Ember-authored, 2026-05-14) rather than the earlier `https://frontend-dev.imaginebc.io/visit` URL.
+- **Custom domain**: `imaginebc.net` is live. `www.imaginebc.net` redirects to apex. `http://` auto-redirects to `https://`. Cert issued by Let's Encrypt via GitHub Pages.
+- **HTTPS enforced** on the GitHub Pages settings.
+- **Staging gate removed**: password gate (`Spurs!1111`) and `noindex` meta tags both gone. Site is publicly indexable.
+- **Visit-The-Town CTAs** routed to production visitor center: `https://frontend-dev.imaginebc.io/visit` (Erik confirmed live 2026-05-14).
+- **Canonical / OG / Twitter meta tags** all on `https://imaginebc.net/`.
 
-The `/visit.html` page matches the parent site's design system (Inter + Playfair Display, dark navy + teal accent, same logo, same brand voice) and includes:
+### DNS infrastructure (GoDaddy)
 
-- "Opening Soon" eyebrow with pulsing teal dot
-- Hero headline: *"The Town is taking shape."*
-- Body copy framing what visitors will find when the doors open
-- Two CTAs: return-to-home + jump to the audiences section
-- A six-item "What you'll find" grid (member homes, creator destinations, brand surfaces, X-Terminals, public centers, the Map)
-- Footer email for press / investor / early-access inquiries
+For future reference, the live DNS records at GoDaddy are:
 
-**Swap-back path when production is ready:**
+- **A @ 185.199.108.153** — GitHub Pages apex
+- **A @ 185.199.109.153** — GitHub Pages apex
+- **A @ 185.199.110.153** — GitHub Pages apex
+- **A @ 185.199.111.153** — GitHub Pages apex
+- **CNAME www → imaginebcdev.github.io** — www subdomain
+- *Plus inherited Microsoft 365 / Outlook / Teams / Salesforce / Facebook / Google records on subdomains and TXT/MX records (untouched during launch)*
 
-Single find-and-replace in `index.html`:
+CNAME file at repo root contains `imaginebc.net` (auto-committed by GitHub Pages settings).
+
+---
+
+## 📦 visit.html — preserved fallback (2026-05-14)
+
+The Coming Soon page at `https://imaginebc.net/visit.html` is **kept in the repo** but **no longer referenced from the main site CTAs.** It remains:
+
+- Discoverable via direct URL (`https://imaginebc.net/visit.html` returns the Coming Soon page)
+- Available as a fallback if Erik's production visitor center ever goes offline
+- Reusable for future Coming-Soon scenarios (re-wire by find-and-replace)
+
+**Re-activation path** if needed:
 
 ```
-/visit.html  →  https://[production-visitor-center-url]
+href="https://frontend-dev.imaginebc.io/visit"  →  href="visit.html"
 ```
 
-All 11 CTAs flip. The `visit.html` file can stay in the repo (harmless once unreferenced) or be deleted. `grep -c 'href="/visit.html"' index.html` should return `0` after the swap.
-
-**Status of the remaining 6 `href="#"`:** unchanged from 2026-04-27 audit — 2× `nav-brand` scroll-to-top + 4× footer placeholders (Contact, Press, Privacy, Terms — addressed when those pages exist). `grep -n 'href="#"' index.html` should still return exactly **6** matches.
+Single find-and-replace in `index.html`. 11 CTAs flip back to the local placeholder.
 
 ---
 
-## 🌐 Domain configuration
+## 🤝 Anchor-partner placeholders — kept by design
 
-Current intended public domain: `http://imaginebc.net/` (Willow, 2026-04-26). Willow is actively working on domain configuration as of 2026-05-14 (GoDaddy for `imaginebc.net`, possibly new `imaginarium.net`).
-
-Currently set in:
-
-- `<link rel="canonical">` — line ~7
-- `og:url` meta
-- `og:image` absolute URL
-- `twitter:image` absolute URL
-
-If the domain changes (or moves to `https://` or a new domain), update all four locations: `grep -n "imaginebc.net" index.html`.
-
-GitHub Pages currently serves from `https://imaginebcdev.github.io/Imaginarium/` (org renamed from `ImagineBC` to `ImagineBCDev` between 2026-04-27 and 2026-05-14 — the old Pages URL `imaginebc.github.io/Imaginarium/` now 404s; GitHub Pages doesn't follow org-rename redirects).
-
----
-
-## 🤝 Anchor-partner placeholders — kept by design (2026-04-27)
-
-Two anchor-partner references render as generic placeholders. **Per Erik's decision on 2026-04-27, these stay as placeholders permanently** — the audience-targeted decks Erik handed to Osiris already address how named-partner mentions are handled across the marketing surfaces, so the public website intentionally keeps category-level framing.
+Two anchor-partner references render as generic placeholders. Per Erik's 2026-04-27 decision, **these stay permanently** — public website stays category-level; specific brand names live in the audience-targeted decks.
 
 | Placeholder | Location(s) | Status |
 |---|---|---|
@@ -78,22 +60,29 @@ No swap needed. If a future partner explicitly wants public attribution on the w
 
 ---
 
-## 🎨 Visual / asset notes
+## 🔗 Open links
 
-- The 10 building images in `images/buildings/` are an initial set. Per `docs/art-prompts.md` the style direction is medieval-fantasy isometric craft village (Age of Empires meets fantasy village builder). If new buildings get added or the existing renders are upgraded, the file naming convention is `{building-slug}.png` (e.g., `gallery.png`, `theater.png`, `livebroadcastcenter.png`).
-- All hero / panel / map images live at `images/` root.
-- `visit.html` is intentionally text-only (no hero image) so it loads instantly and doesn't over-promise visual richness when the destination isn't open yet.
+Six `href="#"` references in `index.html` remain by design:
+
+- 2× `nav-brand` (logo + name; serve as scroll-to-top — intentionally `href="#"`)
+- 4× footer placeholders (Contact, Press, Privacy, Terms — separate pages to build out later when those concerns need addressing)
+
+`grep -n 'href="#"' index.html` should return exactly **6** matches. If it returns more, audit before assuming intent.
 
 ---
 
-## 📋 Open work (tear off as items complete)
+## 🎨 Visual / asset notes
 
-- [x] Password gate + noindex removed ✅ 2026-05-14
-- [x] Visit The Town CTAs wired to local `/visit.html` placeholder ✅ 2026-05-14
-- [ ] When Erik's production Town is ready: single find-and-replace `/visit.html` → production URL
-- [ ] Confirm/finalize public domain (`imaginebc.net` via GoDaddy, or new `imaginarium.net`)
-- [ ] Once domain is pointed: verify `canonical`, `og:url`, `og:image`, `twitter:image` all reflect final URL
-- [x] Anchor-partner placeholders — kept permanent by design ✅ 2026-04-27
-- [ ] Manual smoke test (post-domain): load on desktop + mobile, click every CTA, verify all images render
-- [ ] Submit sitemap to Google Search Console after domain is live
-- [ ] Update `og:image` with a fresh dated banner if the public launch warrants distinctive social-share art
+- The 10 building images in `images/buildings/` are an initial set. Style direction: medieval-fantasy isometric craft village. Naming: `{building-slug}.png`. If new buildings are commissioned, drop into same folder.
+- All hero / panel / map images at `images/` root.
+- `visit.html` is intentionally text-only — instant load, no risk of stale/missing images.
+
+---
+
+## 📋 Ongoing punch list (not blockers; nice-to-haves)
+
+- [ ] Build out the 4 footer pages (Contact, Press, Privacy, Terms) when each becomes a real concern
+- [ ] Submit sitemap to Google Search Console (now that the site is indexable, this surfaces it in search faster)
+- [ ] (Optional) Add four AAAA records at GoDaddy for IPv6 coverage (~5% of visitors)
+- [ ] (Optional) Refresh `og:image` with dated launch art if a press push warrants a distinctive social-share image
+- [ ] Monitor: when Erik's visitor center moves from `frontend-dev.imaginebc.io/visit` to a production URL, single find-and-replace updates all 11 CTAs
