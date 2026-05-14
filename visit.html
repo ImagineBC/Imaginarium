@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit The Town — Opening Soon | ImagineBC</title>
+    <meta name="description" content="The Town is the experiential heart of ImagineBC — where members earn for their attention, creators become destinations, and brands reach verified humans. Opening soon.">
+    <meta name="theme-color" content="#0a0e1a">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1420;
+            --bg-card: #151c2c;
+            --accent-teal: #56AF9B;
+            --accent-gold: #F39C12;
+            --text-primary: #e8eaf0;
+            --text-secondary: #a8b0c4;
+            --text-muted: #6b7488;
+            --border: rgba(255,255,255,0.08);
+            --radius-pill: 100px;
+            --radius-lg: 18px;
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* === BACKGROUND TEXTURE (subtle radial wash, matches main site mood) === */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(86,175,155,0.08), transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(243,156,18,0.05), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* === NAV (minimal — logo + back link only) === */
+        .nav {
+            position: relative;
+            z-index: 10;
+            padding: 24px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand {
+            display: inline-flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--text-primary);
+        }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 9px; }
+        .nav-brand-text {
+            font-family: 'Playfair Display', serif; font-weight: 800;
+            font-size: 1.25rem; letter-spacing: -0.02em;
+        }
+        .nav-back {
+            font-size: 0.88rem; color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s var(--ease);
+        }
+        .nav-back:hover { color: var(--accent-teal); }
+
+        /* === MAIN HERO === */
+        main {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex; align-items: center; justify-content: center;
+            padding: 40px 24px 80px;
+        }
+        .container {
+            max-width: 720px; width: 100%;
+            text-align: center;
+        }
+
+        /* "Opening Soon" eyebrow tag */
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 8px 18px; border-radius: var(--radius-pill);
+            background: rgba(86,175,155,0.1);
+            border: 1px solid rgba(86,175,155,0.3);
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--accent-teal);
+            text-transform: uppercase; letter-spacing: 0.12em;
+            margin-bottom: 32px;
+        }
+        .eyebrow-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent-teal);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(86,175,155,0.6); }
+            50%      { opacity: 0.7; box-shadow: 0 0 0 8px rgba(86,175,155,0); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 800;
+            font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+            line-height: 1.08; letter-spacing: -0.03em;
+            margin-bottom: 28px;
+        }
+        h1 em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 620px; margin: 0 auto 20px;
+        }
+        .lead strong {
+            color: var(--text-primary); font-weight: 600;
+        }
+
+        .picture {
+            font-size: 1.0rem;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 580px; margin: 0 auto 44px;
+        }
+
+        .ctas {
+            display: flex; gap: 14px;
+            justify-content: center; flex-wrap: wrap;
+            margin-bottom: 56px;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: var(--radius-pill);
+            font-size: 0.95rem; font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s var(--ease);
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: var(--accent-teal); color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(86,175,155,0.35);
+        }
+        .btn-ghost {
+            background: transparent; color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        .btn-ghost:hover {
+            border-color: rgba(86,175,155,0.4);
+            color: var(--text-primary);
+        }
+
+        /* === BUILDING-LIST (the texture detail — what's being constructed) === */
+        .what-list {
+            margin-top: 32px;
+            padding: 28px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            text-align: left;
+        }
+        .what-label {
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--accent-teal);
+            text-transform: uppercase; letter-spacing: 0.12em;
+            margin-bottom: 18px;
+        }
+        .what-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 32px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+        .what-items div { display: flex; align-items: flex-start; gap: 10px; line-height: 1.45; }
+        .what-items div::before {
+            content: '◆'; color: var(--accent-gold);
+            font-size: 0.7rem; flex-shrink: 0;
+            margin-top: 4px;
+        }
+        .what-items strong { color: var(--text-primary); font-weight: 600; }
+
+        /* === FOOTER === */
+        footer {
+            position: relative; z-index: 1;
+            padding: 32px 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        footer a {
+            color: var(--accent-teal);
+            text-decoration: none;
+            transition: opacity 0.2s var(--ease);
+        }
+        footer a:hover { opacity: 0.8; }
+
+        /* === MOBILE === */
+        @media (max-width: 640px) {
+            .nav { padding: 20px 22px; }
+            main { padding: 24px 22px 60px; }
+            h1 { font-size: clamp(2rem, 8vw, 2.75rem); margin-bottom: 22px; }
+            .lead { font-size: 1.0rem; }
+            .picture { font-size: 0.94rem; margin-bottom: 36px; }
+            .ctas { gap: 10px; flex-direction: column; align-items: stretch; }
+            .btn { justify-content: center; }
+            .what-list { padding: 22px 20px; }
+            .what-items { grid-template-columns: 1fr; gap: 12px; }
+            footer { padding: 24px 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="/" class="nav-brand" aria-label="ImagineBC home">
+            <img src="images/logo.png" alt="">
+            <span class="nav-brand-text">ImagineBC</span>
+        </a>
+        <a href="/" class="nav-back">← Back to main site</a>
+    </nav>
+
+    <main>
+        <div class="container">
+
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Opening Soon
+            </div>
+
+            <h1>The Town is <em>taking shape</em>.</h1>
+
+            <p class="lead">
+                You arrived a little early. We're <strong>paving the cobblestones</strong>, lighting the lanterns, and painting the signs. The first <strong>Behavioral Intelligence Platform powered by a creator economy</strong> isn't quite ready to welcome visitors yet — but it will be.
+            </p>
+
+            <p class="picture">
+                Picture a village where members earn for the attention they choose to spend, creators become destinations rather than channels lost among millions, brands and institutional buyers reach verified humans through first-party signal no one else has, and the whole economy runs on participatory data the platform itself owns.
+            </p>
+
+            <div class="ctas">
+                <a href="/" class="btn btn-primary">← Return to the village square</a>
+                <a href="/#audiences" class="btn btn-ghost">See who it's for</a>
+            </div>
+
+            <div class="what-list">
+                <div class="what-label">What you'll find when the doors open</div>
+                <div class="what-items">
+                    <div><span><strong>Member homes</strong> — where attention earns, not extracts</span></div>
+                    <div><span><strong>Creator destinations</strong> — channels become places</span></div>
+                    <div><span><strong>Brand surfaces</strong> — campaigns that visit your village</span></div>
+                    <div><span><strong>X-Terminals</strong> — institutional signal access, by category</span></div>
+                    <div><span><strong>Public centers</strong> — civic spaces shaped by the community</span></div>
+                    <div><span><strong>The Map</strong> — a living world you can walk through</span></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        Press &middot; investor &middot; early-access inquiries: <a href="mailto:erind@imaginebc.net">erind@imaginebc.net</a>
+    </footer>
+
+</body>
+</html>
