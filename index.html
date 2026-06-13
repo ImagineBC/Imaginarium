@@ -397,7 +397,7 @@
         .terminals-header { text-align: center; margin-bottom: 48px; }
         .terminals-visual { margin: 0 auto 56px; max-width: 1180px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid rgba(167,139,250,0.16); }
         .terminals-visual img { width: 100%; height: auto; display: block; }
-        .terminals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 32px; }
+        .terminals-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 32px; }
         .terminal-card {
             padding: 32px 26px; border-radius: var(--radius-md);
             background: var(--bg-card); border: 1px solid var(--border-subtle);
@@ -665,6 +665,104 @@
             .rollout-phases-grid { grid-template-columns: 1fr; }
         }
 
+        /* === DISCOVERY TIER + SCOUTX (Task 3, 2026-06-13) === */
+        .hero-badge-alt { margin-top: 12px; }
+        .hero-badge-alt .hero-badge-dot { background: var(--accent-blue); }
+
+        /* Flywheel supply-side loop callout */
+        .flywheel-loop {
+            margin: 40px auto 0; max-width: 900px; padding: 28px 32px; border-radius: var(--radius-md);
+            background: linear-gradient(135deg, rgba(74,144,226,0.08), rgba(86,175,155,0.06));
+            border: 1px solid rgba(74,144,226,0.18); text-align: center;
+        }
+        .flywheel-loop-label {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--accent-blue); margin-bottom: 10px;
+        }
+        .flywheel-loop-text { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.7; }
+        .flywheel-loop-text strong { color: var(--text-primary); }
+
+        /* Creator two-tier sub-toggle (reuses industry-pill look, blue-scoped) */
+        .creator-tier-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+        .creator-tier-pill {
+            padding: 8px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border-accent); background: transparent;
+            color: var(--text-secondary); transition: all 0.3s var(--ease);
+        }
+        .creator-tier-pill:hover { color: var(--text-primary); background: rgba(255,255,255,0.04); }
+        .creator-tier-pill.active { background: rgba(74,144,226,0.12); color: var(--accent-blue); border-color: rgba(74,144,226,0.25); }
+        .creator-tier-content { display: none; animation: panelIn 0.5s var(--ease); }
+        .creator-tier-content.active { display: block; }
+
+        /* Creator Ladder section */
+        .ladder-rungs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 56px; align-items: stretch; }
+        .ladder-rung {
+            position: relative; padding: 28px 20px; border-radius: var(--radius-md);
+            background: var(--bg-card); border: 1px solid var(--border-subtle);
+            text-align: left; transition: all 0.4s var(--ease);
+        }
+        .ladder-rung:hover { border-color: rgba(74,144,226,0.3); transform: translateY(-5px); box-shadow: var(--shadow-card); }
+        .ladder-rung-threshold { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--accent-blue); line-height: 1; }
+        .ladder-rung-threshold span { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+        .ladder-rung-name { font-weight: 700; margin: 14px 0 8px; font-size: 1.02rem; }
+        .ladder-rung-text { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.55; }
+        .ladder-rung.is-destination { border-color: rgba(86,175,155,0.3); background: linear-gradient(160deg, rgba(86,175,155,0.06), var(--bg-card)); }
+        .ladder-rung.is-destination .ladder-rung-threshold { color: var(--accent-teal); }
+        .ladder-foot { text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 24px; }
+
+        /* Town discovery proving-grounds + card badge */
+        .proving-grounds {
+            margin: 0 auto 36px; max-width: 900px; padding: 22px 28px; border-radius: var(--radius-md);
+            background: linear-gradient(135deg, rgba(74,144,226,0.08), rgba(243,156,18,0.05));
+            border: 1px solid rgba(74,144,226,0.16); text-align: center;
+        }
+        .proving-grounds-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px; }
+        .proving-grounds-text { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.65; }
+        .proving-grounds-text strong { color: var(--text-primary); }
+        .building-card-badge {
+            position: absolute; top: 8px; left: 8px; z-index: 2;
+            background: rgba(74,144,226,0.92); color: #fff; font-size: 0.62rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px;
+        }
+        .building-card-img.is-placeholder {
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(150deg, #1a2340, #2d4a73); color: #cfe0f7;
+            font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; letter-spacing: -0.01em;
+        }
+
+        /* ScoutX terminal accent (creator-side terminal → blue, distinct from violet institutional) */
+        .terminal-card.is-scoutx:hover { border-color: rgba(74,144,226,0.35); box-shadow: var(--shadow-glow-blue); }
+        .terminal-card.is-scoutx .terminal-card-name { color: var(--accent-blue); }
+        .terminal-card-tag {
+            display: inline-block; margin-bottom: 10px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--accent-blue); background: rgba(74,144,226,0.12);
+            padding: 3px 8px; border-radius: 100px;
+        }
+
+        /* ScoutX feature section */
+        .scoutx-section { background: var(--bg-secondary); }
+        .scoutx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+        .scoutx-card { padding: 28px 24px; border-radius: var(--radius-md); background: var(--bg-card); border: 1px solid var(--border-subtle); transition: all 0.4s var(--ease); }
+        .scoutx-card:hover { border-color: rgba(74,144,226,0.3); transform: translateY(-5px); box-shadow: var(--shadow-card); }
+        .scoutx-card-tier { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px; }
+        .scoutx-card-title { font-weight: 700; font-size: 1.08rem; margin-bottom: 10px; }
+        .scoutx-card-text { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .scoutx-consent {
+            margin: 40px auto 0; max-width: 820px; padding: 24px 30px; border-radius: var(--radius-md);
+            background: rgba(86,175,155,0.06); border: 1px solid rgba(86,175,155,0.2); text-align: center;
+        }
+        .scoutx-consent-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-teal); margin-bottom: 10px; }
+        .scoutx-consent-text { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.7; }
+        .scoutx-consent-text strong { color: var(--text-primary); }
+
+        @media (max-width: 1024px) {
+            .ladder-rungs { grid-template-columns: repeat(2, 1fr); }
+            .scoutx-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .ladder-rungs { grid-template-columns: 1fr; }
+        }
+
     </style>
 </head>
 <body>
@@ -699,13 +797,17 @@
                 <span class="hero-badge-dot"></span>
                 Africa is the proof &bull; The world is the market
             </div>
+            <div class="hero-badge hero-badge-alt">
+                <span class="hero-badge-dot"></span>
+                Where the world's next creators are discovered
+            </div>
             <h1 class="hero-title heading-display heading-xl">
                 The world's first<br>
                 <span class="highlight">Behavioral Intelligence Platform</span><br>
                 powered by a creator economy.
             </h1>
             <p class="hero-subtitle">
-                <strong>Members</strong> earn for their attention. <strong>Creators</strong> become destinations &mdash; not emotionless channels buried among 150 million similar ones &mdash; and get paid by the audience they actually built. <strong>Brands and institutional buyers</strong> reach verified humans and tap first-party behavioral signal no one else has. <strong>Funders</strong> back the first platform where the creator economy <em>IS</em> the data layer.
+                <strong>Members</strong> earn for their attention. <strong>Creators</strong> become destinations &mdash; not emotionless channels buried among 150 million similar ones &mdash; and the next ones are <em>discovered here</em>: submit your work into a public center, build an audience, and climb to your own building. <strong>Brands and institutional buyers</strong> reach verified humans and tap first-party behavioral signal no one else has. <strong>Funders</strong> back the first platform where the creator economy <em>IS</em> the data layer.
             </p>
             <div class="hero-ctas" style="margin-bottom: 16px;">
                 <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-primary">Visit The Town</a>
@@ -773,6 +875,12 @@
                     <div class="how-step-text">Every event &mdash; campaign, tip, follow, purchase &mdash; becomes <strong>first-party behavioral signal</strong>. Institutional buyers access it through X-Terminals. Step 4 funds Step 1. The flywheel spins.</div>
                 </div>
             </div>
+            <div class="flywheel-loop reveal">
+                <div class="flywheel-loop-label">The Supply-Side Loop &mdash; Members Become Creators</div>
+                <div class="flywheel-loop-text">
+                    The same members who earn in Step 2 also <strong>submit their own work</strong> into the town's public centers &mdash; Amplify, Nexus, B4Famous. The audience produces the next generation of supply. Some get featured, build a following, and <strong>graduate into creators with their own buildings</strong>, deepening Step 1's reach and Step 4's signal. The demand side <em>and</em> the supply side both compound &mdash; that's what makes the flywheel self-feeding.
+                </div>
+            </div>
             <div style="text-align: center; margin-top: 56px;" class="reveal">
                 <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-primary">Visit The Town</a>
             </div>
@@ -801,6 +909,51 @@
             <div class="audience-panel active" data-panel="creators">
                 <div class="audience-panel-inner">
                     <div class="audience-panel-content">
+                        <div class="creator-tier-pills">
+                            <button class="creator-tier-pill active" data-tier="emerging" onclick="switchCreatorTier('emerging')">Emerging &mdash; Get Discovered</button>
+                            <button class="creator-tier-pill" data-tier="established" onclick="switchCreatorTier('established')">Established &mdash; Own Your Building</button>
+                        </div>
+
+                        <div class="creator-tier-content active" data-tier="emerging">
+                            <div class="audience-panel-tagline">Start Where You Are.</div>
+                            <h3 class="audience-panel-title">Get Discovered.<br>No Building Required.</h3>
+                            <p class="audience-panel-desc">
+                                You don't need a following to start. Any verified member can <em>submit their work</em> into the town's public centers &mdash; music into <strong>Amplify</strong>, gameplay into <strong>The Nexus</strong>, breakout talent into <strong>B4Famous</strong>. Community curators surface the best of it, members discover you by walking the town, and every follow moves you up the ladder toward a building of your own.
+                            </p>
+                            <div class="audience-features">
+                                <div class="audience-feature">
+                                    <div class="audience-feature-icon">&#128228;</div>
+                                    <div class="audience-feature-text">
+                                        <h4>Submit Permissionlessly</h4>
+                                        <p>No building, no BizBase, no gatekeeper. Put your work in front of the whole town &mdash; curated for quality, never pay-to-play.</p>
+                                    </div>
+                                </div>
+                                <div class="audience-feature">
+                                    <div class="audience-feature-icon">&#127775;</div>
+                                    <div class="audience-feature-text">
+                                        <h4>Get Featured in Public Centers</h4>
+                                        <p>Amplify, The Nexus, and B4Famous are proving grounds. Land a feature and real members &mdash; not an algorithm &mdash; decide whether you rise.</p>
+                                    </div>
+                                </div>
+                                <div class="audience-feature">
+                                    <div class="audience-feature-icon">&#128200;</div>
+                                    <div class="audience-feature-text">
+                                        <h4>Build an Audience &amp; Earn</h4>
+                                        <p>Every follower is a rung. Unlock the creator studio, then monetization, then platform search &mdash; earning real Imaginarium Credits the whole way up.</p>
+                                    </div>
+                                </div>
+                                <div class="audience-feature">
+                                    <div class="audience-feature-icon">&#127968;</div>
+                                    <div class="audience-feature-text">
+                                        <h4>Graduate to Your Own Building</h4>
+                                        <p>Cross the threshold and open your doors: a full public channel building of your own. See the whole climb in <a href="#ladder" style="color:var(--accent-blue); text-decoration:none;">The Creator Ladder</a>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-blue">Visit The Town &mdash; Start Getting Discovered</a>
+                        </div>
+
+                        <div class="creator-tier-content" data-tier="established">
                         <div class="audience-panel-tagline">Real Cash. Real Audiences. Real Monetization.</div>
                         <h3 class="audience-panel-title">Build a Place<br>People Actually Visit.</h3>
                         <p class="audience-panel-desc">
@@ -837,9 +990,10 @@
                             </div>
                         </div>
                         <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-blue">Visit The Town &mdash; See How Places Are Built</a>
+                        </div>
                     </div>
                     <div class="audience-panel-visual">
-                        <img src="images/creators-panel.png" alt="Creator's custom building interior" loading="lazy">
+                        <img id="creatorTierVisual" src="images/creators-emerging-panel.png" alt="An emerging creator submitting their work to a public center" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -898,6 +1052,7 @@
                             <button class="industry-pill" data-industry="telcos" onclick="switchIndustry('telcos')">Telcos</button>
                             <button class="industry-pill" data-industry="retail" onclick="switchIndustry('retail')">Retail &amp; FMCG</button>
                             <button class="industry-pill" data-industry="verticals" onclick="switchIndustry('verticals')">Media &middot; Betting &middot; Faith</button>
+                            <button class="industry-pill" data-industry="talent" onclick="switchIndustry('talent')">Talent &amp; Media</button>
                         </div>
 
                         <!-- FINANCIAL / CredX -->
@@ -1024,10 +1179,41 @@
                             </div>
                         </div>
 
+                        <!-- TALENT &amp; MEDIA / ScoutX -->
+                        <div class="industry-content" data-industry="talent">
+                            <h3 class="audience-panel-title">See the Breakout<br>Before the World Does.</h3>
+                            <p class="audience-panel-desc">
+                                Every emerging creator in the town leaves a behavioral trail before they're famous &mdash; submissions, features, follows, the slope of their rise. <strong>ScoutX</strong> turns that trail into pre-breakout talent intelligence: the leading indicator no scraping tool can build, in the genres the world is hungriest for. Surfaced only over creators who <em>opted into discovery</em> by submitting their work.
+                            </p>
+                            <div class="audience-features">
+                                <div class="audience-feature">
+                                    <div class="audience-feature-icon">&#128226;</div>
+                                    <div class="audience-feature-text">
+                                        <h4>Influencer &amp; Brand Marketing</h4>
+                                        <p>Find the creators on the rise before their rate card catches up &mdash; with the momentum data to prove the trajectory, not just the vanity follower count.</p>
+                                    </div>
+                                </div>
+                                <div class="audience-feature">
+                                    <div class="audience-feature-icon">&#127908;</div>
+                                    <div class="audience-feature-text">
+                                        <h4>Labels, A&amp;R &amp; Distributors</h4>
+                                        <p>Majors, indie labels, and aggregators get a ranked, momentum-scored watchlist of emerging talent worldwide &mdash; from Afrobeats and Amapiano to hip-hop, gospel, and comedy &mdash; pre-signing.</p>
+                                    </div>
+                                </div>
+                                <div class="audience-feature">
+                                    <div class="audience-feature-icon">&#127916;</div>
+                                    <div class="audience-feature-text">
+                                        <h4>Agencies, Streaming &amp; Esports</h4>
+                                        <p>360 management, commissioning editors, and esports orgs scout the next roster from real engagement &mdash; with The Nexus and B4Famous feeding gaming and live-talent signal.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-violet">Visit The Town &mdash; See the Signal Up Close</a>
                     </div>
                     <div class="audience-panel-visual">
-                        <img src="images/x-terminals-visual.png" alt="The four X-Terminals receiving behavioral signal from the village" loading="lazy">
+                        <img src="images/x-terminals-visual.png" alt="The X-Terminals receiving behavioral signal from the village" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -1061,6 +1247,13 @@
                                 <div class="audience-feature-text">
                                     <h4>Compounding Regulatory &amp; Competitive Moat</h4>
                                     <p>Participatory data &gt; surveillance data. Members consent and engage; the resulting signal is structurally harder for legacy players to replicate, and the architecture is positioned exactly where global regulation is heading.</p>
+                                </div>
+                            </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#128081;</div>
+                                <div class="audience-feature-text">
+                                    <h4>Two Data Products, One Engine</h4>
+                                    <p>Every member is a latent creator, so supply scales permissionlessly &mdash; no creator-acquisition spend. And the discovery tier yields a <strong>second enterprise revenue line</strong>: ScoutX sells pre-breakout talent intelligence to an entirely orthogonal buyer set &mdash; labels, agencies, influencer marketing. One engine, two monetizable datasets: a multiple-expander, not a feature.</p>
                                 </div>
                             </div>
                         </div>
@@ -1103,6 +1296,13 @@
                                     <p>No data harvesting. No shadow profiles. No retargeting. You verify your identity once, then your data is yours to share &mdash; on your terms, for value.</p>
                                 </div>
                             </div>
+                            <div class="audience-feature">
+                                <div class="audience-feature-icon">&#127775;</div>
+                                <div class="audience-feature-text">
+                                    <h4>You Could Be Discovered Here Too</h4>
+                                    <p>Every member is one submission away from being a creator. Drop your music, gameplay, or talent into a public center and start climbing <a href="#ladder" style="color:var(--accent-teal); text-decoration:none;">The Creator Ladder</a> &mdash; same town, bigger story.</p>
+                                </div>
+                            </div>
                         </div>
                         <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-teal">Visit The Town</a>
                     </div>
@@ -1110,6 +1310,50 @@
                         <img src="images/members-panel.png" alt="Member exploring the village" loading="lazy">
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-glow"></div>
+
+    <!-- THE CREATOR LADDER -->
+    <section class="section creator-ladder-section" id="ladder">
+        <div class="container">
+            <div class="ladder-header" style="text-align:center;">
+                <div class="eyebrow reveal">The Climb</div>
+                <h2 class="heading-display heading-lg reveal reveal-d1" style="text-align:center;">From Member to Movement.</h2>
+                <p class="text-lg text-muted reveal reveal-d2" style="max-width:700px; margin:16px auto 0; text-align:center;">No casting call. No gatekeeper. A legible, follower-driven career ladder &mdash; every member starts on rung one, and the whole town can see how far they've climbed.</p>
+            </div>
+            <div class="ladder-rungs">
+                <div class="ladder-rung reveal reveal-d1">
+                    <div class="ladder-rung-threshold">0<span>Followers</span></div>
+                    <div class="ladder-rung-name">Member</div>
+                    <div class="ladder-rung-text">Start here. Earn from campaigns, spend on creators, and submit your work into the public centers &mdash; Amplify, The Nexus, B4Famous.</div>
+                </div>
+                <div class="ladder-rung reveal reveal-d2">
+                    <div class="ladder-rung-threshold">50<span>Followers</span></div>
+                    <div class="ladder-rung-name">Creator Studio</div>
+                    <div class="ladder-rung-text">Unlock BizBase &mdash; the creator tooling. Your audience has started to form, and now you have a workshop to build for them.</div>
+                </div>
+                <div class="ladder-rung reveal reveal-d3">
+                    <div class="ladder-rung-threshold">100<span>Followers</span></div>
+                    <div class="ladder-rung-name">Monetization</div>
+                    <div class="ladder-rung-text">Start getting paid. Your content can now earn directly &mdash; the audience you built begins funding the work.</div>
+                </div>
+                <div class="ladder-rung reveal reveal-d4">
+                    <div class="ladder-rung-threshold">150<span>Followers</span></div>
+                    <div class="ladder-rung-name">Discoverable</div>
+                    <div class="ladder-rung-text">Become findable in platform search. The whole town can now seek you out by name &mdash; not just stumble past your work.</div>
+                </div>
+                <div class="ladder-rung is-destination reveal reveal-d5">
+                    <div class="ladder-rung-threshold">500<span>Followers</span></div>
+                    <div class="ladder-rung-name">Own Your Building</div>
+                    <div class="ladder-rung-text">Open your doors: a full public channel building of your own. You've graduated from emerging creator to channel-tier destination.</div>
+                </div>
+            </div>
+            <div class="ladder-foot reveal">Thresholds are configuration-driven and may be tuned per market &mdash; values shown are the current platform defaults.</div>
+            <div style="text-align: center; margin-top: 48px;" class="reveal">
+                <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-blue">Visit The Town &mdash; Start Your Climb</a>
             </div>
         </div>
     </section>
@@ -1127,7 +1371,22 @@
             <div class="town-pull reveal reveal-d3">
                 <p class="town-pull-text">&ldquo;SimCity was a game based on reality. The Imaginarium is reality, gamified.&rdquo;</p>
             </div>
+            <div class="proving-grounds reveal">
+                <div class="proving-grounds-label">Proving Grounds &mdash; Where You Get Discovered</div>
+                <div class="proving-grounds-text">
+                    Some buildings aren't just venues &mdash; they're on-ramps. <strong>B4Famous</strong> (breakout talent), <strong>Amplify</strong> (music), and <strong>The Nexus</strong> (gaming) let any verified member submit their work and start building an audience. No building of your own required &mdash; yet.
+                </div>
+            </div>
             <div class="building-grid">
+                <div class="building-card">
+                    <span class="building-card-badge">Get discovered</span>
+                    <img class="building-card-img" src="images/buildings/b4famous.png" alt="B4Famous &mdash; breakout talent discovery hall" loading="lazy">
+                    <div class="building-card-info">
+                        <div class="building-card-name">B4Famous</div>
+                        <div class="building-card-swahili">B4Famous</div>
+                        <div class="building-card-type">Breakout Talent Discovery</div>
+                    </div>
+                </div>
                 <div class="building-card">
                     <img class="building-card-img" src="images/buildings/gallery.png" alt="The Gallery" loading="lazy">
                     <div class="building-card-info">
@@ -1153,6 +1412,7 @@
                     </div>
                 </div>
                 <div class="building-card">
+                    <span class="building-card-badge">Get discovered</span>
                     <img class="building-card-img" src="images/buildings/the-nexus.png" alt="The Nexus" loading="lazy">
                     <div class="building-card-info">
                         <div class="building-card-name">The Nexus</div>
@@ -1185,6 +1445,7 @@
                     </div>
                 </div>
                 <div class="building-card">
+                    <span class="building-card-badge">Get discovered</span>
                     <img class="building-card-img" src="images/buildings/amplify.png" alt="Amplify" loading="lazy">
                     <div class="building-card-info">
                         <div class="building-card-name">Amplify</div>
@@ -1248,7 +1509,7 @@
             </div>
 
             <div class="terminals-visual reveal">
-                <img src="images/x-terminals-visual.png" alt="The four X-Terminals receiving streams of behavioral signal from the village below" loading="lazy">
+                <img src="images/x-terminals-visual.png" alt="The X-Terminals receiving streams of behavioral signal from the village below" loading="lazy">
             </div>
 
             <div class="terminals-grid">
@@ -1272,6 +1533,12 @@
                     <div class="terminal-card-buyer">For Brands &amp; SMEs</div>
                     <div class="terminal-card-text">Campaign performance, brand-health signal, audience composition, AI-assisted natural-language queries against verified consumer profiles.</div>
                 </div>
+                <div class="terminal-card is-scoutx">
+                    <span class="terminal-card-tag">Newest</span>
+                    <div class="terminal-card-name">ScoutX</div>
+                    <div class="terminal-card-buyer">For Labels, Agencies &amp; Talent Buyers</div>
+                    <div class="terminal-card-text">Pre-breakout signal on emerging creators &mdash; momentum, trajectory, and audience growth before the rest of the world catches on. The leading indicator no scraping tool can build.</div>
+                </div>
             </div>
 
             <div class="terminals-verticals reveal reveal-d5">
@@ -1279,6 +1546,48 @@
                 <div class="terminals-verticals-list">
                     <strong>Media Networks</strong> &middot; <strong>Betting Operators</strong> &middot; <strong>Faith Organizations</strong>
                     <br><span style="color:var(--text-muted); font-size: 0.85rem;">Each gets a tailored surface into the behavioral graph &mdash; built for the questions only they ask.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-glow"></div>
+
+    <!-- SCOUTX FEATURE -->
+    <section class="section scoutx-section" id="scoutx">
+        <div class="container">
+            <div class="terminals-header">
+                <div class="eyebrow reveal" style="color:var(--accent-blue);">The Newest Terminal</div>
+                <h2 class="heading-display heading-lg reveal reveal-d1" style="text-align:center;">Discover Talent<br>Before the World Does.</h2>
+                <p class="text-lg text-muted reveal reveal-d2" style="max-width:700px; margin:16px auto 0; text-align:center;">The discovery tier produces something no one else has: a behavioral record of every emerging creator <em>before</em> they break out. ScoutX turns it into the leading indicator for the entire talent economy &mdash; anywhere in the world.</p>
+            </div>
+
+            <div class="terminals-visual reveal" style="border-color: rgba(74,144,226,0.18);">
+                <img src="images/scoutx-visual.png" alt="ScoutX surfacing pre-breakout talent signal from emerging creators across the town" loading="lazy">
+            </div>
+
+            <div class="scoutx-grid">
+                <div class="scoutx-card reveal reveal-d1">
+                    <div class="scoutx-card-tier">Lead Buyers</div>
+                    <div class="scoutx-card-title">Influencer &amp; Brand Marketing</div>
+                    <div class="scoutx-card-text">Book creators on the rise before their rate card catches up. Momentum and trajectory data prove the curve &mdash; not just a follower count that's already public.</div>
+                </div>
+                <div class="scoutx-card reveal reveal-d2">
+                    <div class="scoutx-card-tier">Lead Buyers</div>
+                    <div class="scoutx-card-title">Labels, A&amp;R &amp; Distributors</div>
+                    <div class="scoutx-card-text">A ranked, momentum-scored watchlist of emerging talent worldwide &mdash; from Afrobeats and Amapiano to hip-hop, gospel, and comedy. Sign the trajectory, not the hype.</div>
+                </div>
+                <div class="scoutx-card reveal reveal-d3">
+                    <div class="scoutx-card-tier">Expansion Buyers</div>
+                    <div class="scoutx-card-title">Agencies, Streaming &amp; Esports</div>
+                    <div class="scoutx-card-text">360 management, commissioning editors, and esports orgs build the next roster from real engagement &mdash; with The Nexus and B4Famous feeding gaming and live-talent signal.</div>
+                </div>
+            </div>
+
+            <div class="scoutx-consent reveal">
+                <div class="scoutx-consent-label">Consent by Construction</div>
+                <div class="scoutx-consent-text">
+                    ScoutX only ever surfaces creators who <strong>opted into discovery by submitting their own work</strong>. It's a service <em>to</em> the creator &mdash; a path to being found &mdash; not surveillance <em>of</em> them. No scraping, no shadow profiles. The same dignity-and-consent principle that runs through every layer of the platform.
                 </div>
             </div>
         </div>
@@ -1315,9 +1624,9 @@
                     <div class="anchor-tier-icon">&#127942;</div>
                     <div class="anchor-tier-title">Lease an X-Terminal</div>
                     <div class="anchor-tier-desc">
-                        Full first-party behavioral signal access. <strong>CredX, TelcoX, RetailX, BrandX</strong>, or vertical adaptations for media, betting, and faith. Become the institution that owns this data in your market.
+                        Full first-party behavioral signal access. <strong>CredX, TelcoX, RetailX, BrandX, ScoutX</strong>, or vertical adaptations for media, betting, and faith. Become the institution that owns this data in your market.
                     </div>
-                    <div class="anchor-tier-who"><strong>Best for</strong> &mdash; banks, telcos, retailers, media networks, betting operators, faith orgs</div>
+                    <div class="anchor-tier-who"><strong>Best for</strong> &mdash; banks, telcos, retailers, media networks, betting operators, faith orgs, labels &amp; talent buyers</div>
                 </div>
             </div>
             <div class="sponsor-visual reveal">
@@ -1542,7 +1851,7 @@
                 <div class="why-africa-card reveal reveal-d2">
                     <span class="why-africa-num">02</span>
                     <span class="why-africa-title">Creator-Dense Culture</span>
-                    <span class="why-africa-text">Afrobeats, Nollywood, gospel, comedy &mdash; globally exportable creator engines that provide natural engagement fuel.</span>
+                    <span class="why-africa-text">Afrobeats, Amapiano, Nollywood, gospel, comedy &mdash; among the world's fastest-growing creative exports, and the proving ground where ScoutX spots breakout talent first. The model travels everywhere; the supply of emerging talent runs hot here.</span>
                 </div>
                 <div class="why-africa-card reveal reveal-d3">
                     <span class="why-africa-num">03</span>
@@ -1578,10 +1887,11 @@
             <div class="eyebrow reveal" style="color: var(--accent-teal);">The Door Is Open</div>
             <h2 class="heading-display heading-lg final-cta-title reveal reveal-d1">Step Inside<br>the Imaginarium.</h2>
             <p class="text-lg final-cta-subtitle reveal reveal-d2">
-                We built a visitor center so you don't have to imagine.
+                We built a visitor center so you don't have to imagine. Come earn, explore &mdash; or put your work in front of the town and start getting discovered.
             </p>
             <div class="final-cta-buttons reveal reveal-d3">
                 <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-primary">Visit The Town</a>
+                <a href="https://frontend-dev.imaginebc.io/visit" class="btn btn-blue">Get Discovered</a>
             </div>
         </div>
     </section>
@@ -1603,7 +1913,9 @@
                     <div class="footer-col-title">Platform</div>
                     <ul>
                         <li><a href="#how-it-works">The Flywheel</a></li>
+                        <li><a href="#ladder">The Creator Ladder</a></li>
                         <li><a href="#terminals">X-Terminals</a></li>
+                        <li><a href="#scoutx">ScoutX</a></li>
                         <li><a href="#town">The Town</a></li>
                         <li><a href="#thesis">The Thesis</a></li>
                     </ul>
@@ -1657,6 +1969,24 @@
                 t.classList.toggle('active', t.dataset.tab === tabName));
             document.querySelectorAll('.audience-panel').forEach(p =>
                 p.classList.toggle('active', p.dataset.panel === tabName));
+        }
+
+        // Creator two-tier sub-toggle (Emerging / Established) inside the Creators panel
+        function switchCreatorTier(tier) {
+            document.querySelectorAll('.creator-tier-pill').forEach(p =>
+                p.classList.toggle('active', p.dataset.tier === tier));
+            document.querySelectorAll('.creator-tier-content').forEach(c =>
+                c.classList.toggle('active', c.dataset.tier === tier));
+            const visual = document.getElementById('creatorTierVisual');
+            if (visual) {
+                if (tier === 'established') {
+                    visual.src = 'images/creators-panel.png';
+                    visual.alt = "Creator's custom building interior";
+                } else {
+                    visual.src = 'images/creators-emerging-panel.png';
+                    visual.alt = 'An emerging creator submitting their work to a public center';
+                }
+            }
         }
 
         // Industry sub-pill switching (inside X-Terminal Clients panel)
