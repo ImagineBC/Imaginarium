@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | ImagineBC</title>
+    <meta name="description" content="ImagineBC Privacy Policy — the Personal Data we collect, how it is used, who can access it, and your rights. Version Date: January 2026.">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="robots" content="index, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1420;
+            --bg-card: #151c2c;
+            --accent-teal: #56AF9B;
+            --accent-gold: #F39C12;
+            --text-primary: #e8eaf0;
+            --text-secondary: #a8b0c4;
+            --text-muted: #6b7488;
+            --border: rgba(255,255,255,0.08);
+            --radius-pill: 100px;
+            --radius-lg: 18px;
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 12%, rgba(86,175,155,0.07), transparent 55%),
+                radial-gradient(ellipse at 75% 85%, rgba(243,156,18,0.04), transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* === NAV (logo + back link) === */
+        .nav {
+            position: relative; z-index: 10;
+            padding: 24px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 9px; }
+        .nav-brand-text { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+        .nav-back { font-size: 0.88rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s var(--ease); }
+        .nav-back:hover { color: var(--accent-teal); }
+
+        /* === CONTENT === */
+        .pp-main { position: relative; z-index: 1; flex: 1; padding: 32px 24px 96px; }
+        .pp-container { max-width: 820px; margin: 0 auto; }
+        .pp-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 8px; }
+        .pp-version { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 40px; }
+
+        .pp-toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 28px; margin-bottom: 44px; }
+        .pp-toc-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--accent-teal); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+        .pp-toc ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; }
+        .pp-toc a { color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; transition: color 0.2s var(--ease); }
+        .pp-toc a:hover { color: var(--accent-teal); }
+
+        .pp-container h2 {
+            font-family: 'Playfair Display', Georgia, serif; font-weight: 800;
+            font-size: 1.6rem; letter-spacing: -0.01em; color: var(--text-primary);
+            margin: 44px 0 16px; padding-top: 28px;
+            border-top: 1px solid var(--border);
+            scroll-margin-top: 24px;
+        }
+        .pp-container h3 { font-weight: 700; font-size: 1.12rem; color: var(--text-primary); margin: 26px 0 10px; }
+        .pp-container p { color: var(--text-secondary); margin-bottom: 16px; }
+        .pp-container a { color: var(--accent-teal); }
+        .pp-container strong { color: var(--text-primary); font-weight: 600; }
+
+        .pp-list { margin: 0 0 18px; padding-left: 24px; color: var(--text-secondary); }
+        .pp-list li { margin-bottom: 8px; }
+        .pp-list li.sub { list-style-type: circle; }
+
+        .pp-center { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 44px; }
+
+        .pp-table-wrap { overflow-x: auto; margin: 14px 0 24px; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+        .pp-table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 0.86rem; }
+        .pp-table th, .pp-table td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        .pp-table th { background: var(--bg-secondary); color: var(--text-primary); font-weight: 600; }
+        .pp-table tr:last-child td { border-bottom: none; }
+
+        /* === FOOTER === */
+        footer { position: relative; z-index: 1; padding: 32px 40px; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        footer a { color: var(--accent-teal); text-decoration: none; transition: opacity 0.2s var(--ease); }
+        footer a:hover { opacity: 0.8; }
+
+        @media (max-width: 640px) {
+            .nav { padding: 20px 22px; }
+            .pp-main { padding: 24px 20px 64px; }
+            .pp-toc ul { grid-template-columns: 1fr; }
+            .pp-container h2 { font-size: 1.35rem; }
+            footer { padding: 24px 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-brand" aria-label="ImagineBC home">
+            <img src="images/logo.png" alt="">
+            <span class="nav-brand-text">ImagineBC</span>
+        </a>
+        <a href="index.html" class="nav-back">← Back to main site</a>
+    </nav>
+
+    <main class="pp-main">
+        <div class="pp-container">
+<h1 class="pp-title">ImagineBC Privacy Policy</h1>
+<p class="pp-version">Version Date: January 2026</p>
+<nav class="pp-toc" aria-label="Contents"><span class="pp-toc-label">Contents</span><ul>
+  <li><a href="#privacy-statement">Privacy Statement</a></li>
+  <li><a href="#personal-data-collected-by-imaginebc">Personal Data Collected by ImagineBC</a></li>
+  <li><a href="#how-is-your-personal-data-used">How Is Your Personal Data Used?</a></li>
+  <li><a href="#who-can-access-the-personal-data-we-collect">Who Can Access the Personal Data We Collect?</a></li>
+  <li><a href="#selling-of-personal-information">Selling of Personal Information</a></li>
+  <li><a href="#minors-and-children-privacy">Minors and Children Privacy</a></li>
+  <li><a href="#links-to-third-party-services">Links to Third Party Services</a></li>
+  <li><a href="#security-storage-retention">Security, Storage, &amp; Retention</a></li>
+  <li><a href="#international-users-consent-to-transfer">International Users – Consent to Transfer</a></li>
+  <li><a href="#changes-to-this-privacy-policy">Changes to this Privacy Policy</a></li>
+  <li><a href="#your-rights">Your Rights</a></li>
+  <li><a href="#your-canadian-rights">Your Canadian Rights</a></li>
+  <li><a href="#privacy-inquiries">Privacy Inquiries</a></li>
+  <li><a href="#appendix-a">Appendix A</a></li>
+</ul></nav>
+      <h2 id="privacy-statement">Privacy Statement </h2>
+      <p>ImagineBC is a provider of a blockchain-based service that allows its users to consent to the use of their information for various purposes, including targeted advertising and recruiting (the “<em><strong>Service</strong></em>”). This Privacy Policy (“<em><strong>Privacy Policy</strong></em>”) describes the types of information, including Personal Data, that ImagineBC (“<em><strong>we</strong></em>,” “<em><strong>our</strong></em>,” “<em><strong>us</strong></em>”) gathers from You when You use our Service, as well as Your choices regarding use and disclosure of Your Personal Data. As used in this Privacy Policy, the term “<em><strong>Personal Data</strong></em>” means information that identifies You directly or indirectly, by reference to identifier(s) such as Your name.  Personal Data includes the types of personal information encompassed by applicable law.</p>
+      <p><strong>By </strong><strong>accessing our Service, </strong><strong>You</strong><strong> agree to be bound by this Privacy Policy</strong><strong>.  </strong><strong>If </strong><strong>You</strong><strong> do not agree to the terms of this Privacy Policy, please do not use our Service</strong><strong>.  </strong><strong>Each time </strong><strong>You</strong><strong> use our Service, the current version of the Privacy Policy will apply</strong><strong>.  </strong><strong>Accordingly, whenever </strong><strong>You</strong><strong> use our Service, </strong><strong>You</strong><strong> should check the date of this </strong><strong>Privacy </strong><strong>Policy (which appears at the top) and review any changes since the last version</strong><strong>. </strong><strong>This Privacy Policy is applicable to all Service visitors</strong><strong>, registered users, and all other users of our Service.</strong></p>
+      <p>Further, You acknowledge that this Privacy Policy is part of our Terms of Service located in the Settings menu of the mobile application<strong>,</strong> which is incorporated by reference, and by accessing or using our Service, You agree to be bound by the Terms of Service.  If You do not agree to our Terms of Service, do not access or use our Service.</p>
+      <p>If You have any questions about our privacy practices, please refer to the end of this Privacy Policy for information on how to contact us.</p>
+      <h2 id="personal-data-collected-by-imaginebc">Personal Data Collected by ImagineBC </h2>
+      <p>When You use our Service, ImagineBC collects information (i) that You knowingly and voluntarily provide when You use our Service (such as through forms, profile screens and our validation process) including registration and account setup information, and (ii) that we are able to collect through Your mobile device including its settings, cookies, and other similar technologies. The following sections and the matrix set forth in <strong>Appendix A </strong>provide a summary of the types of data You will provide through Your use of the Service and how that data will be stored and used.  </p>
+      <h3>Personal Data that You Knowingly and Willingly Provide</h3>
+      <p>ImagineBC collects the information that You knowingly and willingly provide when You use our Service, including account setup information, profile details, and payment information.  We primarily use this information to provide our Service to You.  You can choose not to provide us with certain Personal Data, but then You may not be able to take full advantage of our Service or other available features we offer.  The information that we collect, and use may include the following kinds of Personal Data: </p>
+      <ul class="pp-list">
+        <li>First and Last Name</li>
+        <li>Email Address</li>
+        <li>Credit and/or Debit Card Information</li>
+        <li>Bank Checking and/or Savings account information</li>
+        <li>Postal Address</li>
+        <li>Mobile Telephone Number </li>
+        <li>Login name, screen name, nick name, handle or any other identifier that permits the online contacting of a specific individual</li>
+        <li>Date of Birth</li>
+        <li>Driver’s License Number</li>
+        <li>Passport Number</li>
+        <li>Protected Health Information (PHI) or other personal health information that You choose to provide in connection with certain health or data services provided by the Service or third parties</li>
+        <li>Resume</li>
+        <li>Employment Information</li>
+        <li>Information collected from the user’s social media sites provided the user has given permission to ImagineBC to access these sites</li>
+        <li>Information collected from surveys completed by the user within the application. Surveys can be created by ImagineBC or by any 3rd party with access to ImagineBC’s BizBase portal</li>
+        <li>Location information</li>
+      </ul>
+      <p><strong>Health Information</strong><strong>.  </strong>We may provide opportunities for You to store health information in partnership with a third-party service.  ImagineBC will not directly store Your health information and may access and use only anonymized versions of Your health information.<strong> </strong></p>
+      <h3>Personal Data that we collect from You</h3>
+      <p>ImagineBC collects information that is sent to us automatically by Your mobile device. ImagineBC may use this information to generate aggregate statistics about users to our Service.  This information typically includes details about Your:  </p>
+      <ul class="pp-list">
+        <li>Mobile Device</li>
+        <li>Operating System</li>
+        <li>Local Time Zone</li>
+        <li>Date and Time of Each User Visit </li>
+        <li>Date and time of access to each application page </li>
+      </ul>
+      <p>ImagineBC may use non-Personal Data for various business purposes such as providing customer service, fraud prevention, market research, and improving our Service.  The information we receive depends on the settings on Your mobile device.  Please check Your device if You want to learn what information You transmit or how to change Your settings. </p>
+      <p><strong>Aggregate Information</strong>.  We may aggregate and/or anonymize and/or pseudonymize all information that we collect from You, including Personal Data.  This may be done for the purpose of market research and improving our Service.</p>
+      <h3>Personal Data Collected by Cookies, Web Beacons and Other Technologies</h3>
+      <p>We do not obtain information about You through the use of &quot;cookies&quot; on Your devices.  We will notify You in the future prior to installing and using cookies for data collection purposes. </p>
+      <h2 id="how-is-your-personal-data-used">How Is Your Personal Data Used?</h2>
+      <p>We will only process Your Personal Data, including sharing it with third parties, where (1) You have provided Your consent, (2) the processing is necessary to provide You with the Services, (3) we are required by law, or (4) processing is required to protect Your vital interests or those of another person.</p>
+      <p>We may use Personal Data we collect about You on its own or combine it with other information we have about You to: </p>
+      <ul class="pp-list">
+        <li>Create user accounts and/or profiles through registration;</li>
+        <li>Validate Your identity as part of our authentication process;</li>
+        <li>Provide our Service; </li>
+        <li>Personalize user experiences, such as remembering Your settings and preferences;</li>
+        <li>Transfer Your information, such as to servers outside of the United States, or as part of a merger or sale of all or part of the business;</li>
+        <li>Protect the rights, safety, and information of our members, third parties, as well as our own.  This includes fraud prevention, business or product recalls, investigations into breaches of the law or our Terms of Service, prosecuting and defending a court arbitration or similar proceeding, and more; and/or</li>
+        <li>Comply with legal requirements, such as in response to a subpoena or similar investigative demand. </li>
+      </ul>
+      <p>FOR INDIVIDUALS WITHIN THE EUROPEAN UNION. With Your consent, we may automatically process Your Personal Data for our Services.  Under the European General Data Protection Regulation 2016/679 (“<em><strong>GDPR</strong></em>”), You have certain rights when Your data is processed by automated means.  Please see Section K (Your Rights) for information about how to exercise Your rights. </p>
+      <p>We may also disclose Your Personal Data as otherwise set forth in this Privacy Policy, as permitted by law, or with Your consent.</p>
+      <h2 id="who-can-access-the-personal-data-we-collect">Who Can Access the Personal Data We Collect?</h2>
+      <p>We will only transfer Your Personal Data to trusted third parties who provide sufficient guarantees in respect of the technical and organizational security measures governing the processing to be carried out and who can demonstrate a commitment to compliance with those measures.  Such transfer will occur only after being explicitly requested or approved by You. </p>
+      <p>Where third parties are processing Personal Data on our behalf, they will be required to agree, by contractual means or otherwise, to process the Personal Data in accordance with the applicable law. This contract will stipulate, amongst other things, that the third party and its representative shall act only on our instructions, or as permitted by law. ImagineBC may disclose Your Personal Data to the following:</p>
+      <p><strong>Third Parties You Consent</strong><strong> To</strong><strong>.  </strong>We will share access to Your Personal Data to third parties to whom You expressly consent to share Your Personal Data.</p>
+      <p><strong>Agents</strong><strong> and Authorized Service Providers</strong>.  We employ other companies and individuals to perform functions on our behalf.  Examples of such functions include performing identify verifications, banking related functions and assessments, providing technical support, providing marketing assistance, processing credit card payments, and providing customer service.  We share our users’ Personal Data with these agents as we deem necessary for such third parties to perform their functions, only after receiving Your approval. </p>
+      <p><strong>Employees</strong>.  Only authorized employees have access to Your Personal Data and only during the initial identity verification process. </p>
+      <p><strong>Affiliates and Subsidiaries</strong>.  ImagineBC may share Personal Data with our corporate subsidiaries and affiliates for uses consistent with this Privacy Policy. </p>
+      <p><strong>To Comply with Legal Process, Protect </strong><strong>ImagineBC</strong><strong>, or Enforce our Rights</strong>.  We may release Your Personal Data when it is necessary to (i) conform to legal requirements or comply with legal process; (ii) enforce or apply our conditions of use and other agreements (iii) protect the rights, safety or property of ImagineBC, our affiliates, service providers, our users or the public, or (iv) prevent a crime or protect national security (including exchanging information with other companies and organizations for fraud protection and credit risk reduction).</p>
+      <h2 id="selling-of-personal-information">Selling of Personal Information</h2>
+      <p>We will not sell access to Your information (including Personal Data) unless You expressly consent to the sale. </p>
+      <h2 id="minors-and-children-privacy">Minors and Children Privacy </h2>
+      <p>Our Service is not directed to children under the age of 18, if You are not 18 years or older, do not use our Service.  We do not knowingly collect Personal Data from children under the age of 13.  If we learn that Personal Data of persons less than 13 years-of-age has been collected through our Service, we will take the appropriate steps to delete this information.  If You are a parent or guardian and discover that Your child or a minor under the age of 13 has posted, submitted or otherwise communicated Personal Data to our Service without Your consent, then You may alert us using the messaging functionality within the Service so that we may take appropriate action to remove the minor&#x27;s Personal Data from our systems.</p>
+      <h2 id="links-to-third-party-services">Links to Third Party Services</h2>
+      <p>Through our Service You may receive links to third party websites, applications and services not operated by us.  These links are provided as a service and do not imply any endorsement by ImagineBC of the activities or content of these sites, applications or services nor any association with their operators.  ImagineBC is not responsible for the privacy policies or practices of any third party.  We encourage You to review the privacy policies of any third party that You access in connection with our Service.</p>
+      <h2 id="security-storage-retention">Security, Storage, &amp; Retention</h2>
+      <h3>Security</h3>
+      <p>We take reasonable technical and organizational precautions to protect the confidentiality, security and integrity of Your Personal Data.  Although we use security measures to help protect Your Personal Data against loss, misuse or unauthorized disclosure, we cannot guarantee the security of information transmitted to us over the Internet.  While we strive to use commercially acceptable means to protect Your Personal Data, there is no guarantee that information may not be accessed, disclosed, altered or destroyed.  </p>
+      <h3>Storage</h3>
+      <p>The Personal Data that You provide to us is generally stored on servers located in the United States and South Africa. If You are located in another jurisdiction, You should be aware that once Your Personal Data is submitted through our Service, it will be transferred to our servers in the United States and that the United States currently does not have uniform data protection laws in place.  </p>
+      <h3>Retention</h3>
+      <p>We will retain Your Personal Data in readable form only for the period necessary to fulfill the authentication process whereby ImagineBC validates Your authenticity using various forms of identity for the purpose of opening an Account.  </p>
+      <h2 id="international-users-consent-to-transfer">International Users – Consent to Transfer</h2>
+      <p>We are headquartered in the United States of America.  Your Personal Data may be accessed by us or transferred to us in the United States or to our affiliates, partners, merchants, or service providers who are located worldwide.  If You are visiting our Service from outside the United States, be aware that Your information may be transferred to, stored, and processed in the United States.  As a result, Your information may be subject to legal demands from United States law enforcement or government agencies. By using our Service, You consent to any transfer of this information. </p>
+      <h2 id="changes-to-this-privacy-policy">Changes to this Privacy Policy</h2>
+      <p>We reserve the right to update or modify this Privacy Policy from time to time.  If we make any material changes to this Privacy Policy or the way we use, share or collect Personal Data, we will notify You by revising the “Effective Date” at the top of this Privacy Policy, prominently posting an announcement of the changes on our Service prior to the new policy taking effect.  Users are bound by any changes to the Privacy Policy when they use our Service after notice of such changes has been communicated.  We encourage You to review this Privacy Policy regularly to ensure that You are familiar with ImagineBC’s current practices.  </p>
+      <h2 id="your-rights">Your Rights</h2>
+      <h3>Correction &amp; Removal</h3>
+      <p>If during the period of time following submission of Personal Data and prior to successful verification (after which all Personal Data used for verification will be deleted by ImagineBC) any of the information that we have about You is incorrect, or You wish to have information (including Personal Data) removed from our records, please contact us using the messaging functionality within the Service.  We will respond to such inquiries within fifteen (15) business days.  </p>
+      <h3>Messages</h3>
+      <p>By consenting to this Privacy Policy, You agree to receive messages from us, including messages relating to new features, new functionality, and potential income earning opportunities. </p>
+      <h3>Your European Union Rights</h3>
+      <ul class="pp-list">
+        <li>FOR INDIVIDUALS IN THE EUROPEAN UNION.  Under GDPR, You have the right to not provide Your authorization for any use of Your Personal Data for marketing purposes. We will always request Your authorization if we intend to use Your Personal Data for such purposes or if we intend to disclose Your information to any third party for such purposes. You can exercise Your right to prevent such processing by withholding Your authorization at any time for any reason. You can also exercise the right by contacting us using the Report an Issue section on our application.  </li>
+        <li>Recognizing that ImagineBC’s access to and control over Your Personal Data will be very limited by scope and duration (as described elsewhere in this policy), to the extent and for the duration that ImagineBC has such access, You have the right to: </li>
+        <li>request access to any Personal Data we hold about You as well as related information, including the recipients or categories of recipients to whom the Personal Data has been shared, if any; </li>
+        <li>obtain without undue delay the completion of any incomplete Personal Data or the rectification of any inaccurate Personal Data we hold about You;</li>
+        <li>request Personal Data held about You to be deleted provided the Personal Data is not required by ImagineBC for compliance with a legal obligation under European or Member State law or for the establishment, exercise or defense of a legal claim; </li>
+        <li>prevent or restrict processing of Your Personal Data, except to the extent processing is required for the establishment, exercise or defense of legal claims; and</li>
+        <li>request transfer of Personal Data directly to a third party where this is technically feasible.</li>
+      </ul>
+      <p>Where You believe that ImagineBC has not complied with its obligations under this Privacy Notice or European law, You have the right to make a complaint to an EU Data Protection Authority.  </p>
+      <p>You can exercise any of these rights by contacting us using the Report an Issue section in the mobile application.</p>
+      <h2 id="your-canadian-rights">Your Canadian Rights</h2>
+      <ul class="pp-list">
+        <li>FOR INDIVIDUALS IN CANADA.  Under Canadian law, You have the right to opt out of the use of Your Personal Data for marketing or similar purposes that are not necessary for the Service to function. We will always request Your authorization if we intend to use Your Personal Data for such purposes or if we intend to disclose Your information to any third party for such purposes. You can exercise Your right to prevent such processing by withholding Your authorization at any time for any reason. You can also exercise the right by contacting us using the Report an Issue section on our application.  </li>
+        <li>Recognizing that ImagineBC’s access to and control over Your Personal Data will be very limited by scope and duration (as described elsewhere in this policy), to the extent and for the duration that ImagineBC has such access, You have the right to: </li>
+        <li>request access to any Personal Data we hold about You; </li>
+        <li>request correction of any inaccurate Personal Data we hold about You;</li>
+      </ul>
+      <h2 id="privacy-inquiries">Privacy Inquiries</h2>
+      <p>If You have any questions or concerns about this Privacy Policy or our privacy practices, please contact us using the Report an Issue section in the mobile application.</p>
+      <p>For the purposes of GDPR, the Data Controller is ImagineBC, Inc. registered in Maryland with a registered address at 1201 Seven Locks Rd., Suite 360-22, Rockville, MD 20854. </p>
+      <h2 id="appendix-a">Appendix A</h2>
+      <div class="pp-table-wrap">
+      <table class="pp-table">
+        <thead><tr>
+          <th><strong>Data Category</strong></th>
+          <th><strong>Intended Use</strong></th>
+          <th><strong>Access</strong></th>
+          <th><strong>Storage Location</strong></th>
+          <th><strong>Storage Duration</strong></th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td>Referral Code</td>
+          <td>Serves as an anonymous unique identifier for each member</td>
+          <td>ImagineBC and a member. A member can see their assigned referral code within the mobile application. The referral code is included as part of the copy of an invitation from one member to another. But a member’s referral code is not generally available to other members to view. </td>
+          <td>MySQL database (on ImagineBC’s Azure cloud production environment)</td>
+          <td>Through duration of membership. Once a member’s identity has been verified they will have access to their blockchain secured information. </td>
+        </tr>
+        <tr>
+          <td>Private Key Memory Storage (optional service)</td>
+          <td>For member convenience  (Prevents a member from having to enter a private key more than once within any given session. Members can decide if the convenience is worth the increased risk of storing the key in temporary memory.)</td>
+          <td>ImagineBC</td>
+          <td>Memory of the member’s mobile device</td>
+          <td>During active session only, if elected by member</td>
+        </tr>
+        <tr>
+          <td>Member Personal Identification Information that can potentially be used individually or in combination with other data to determine the identity of a member</td>
+          <td>Verify identity of the member during the onboarding process.<br>Additionally, members can elect to sell parts or all of this information on a selective basis. For example, a member may provide their name and email address to a potential employer.</td>
+          <td>ImagineBC, member, and selected 3rd parties outside the ImagineBC ecosystem if the member has elected to sell access to this information</td>
+          <td>Blockchain/IPFS (private distributed blockchain in Azure cloud production environment)</td>
+          <td>ImagineBC only retains this member information until a member’s TRUST Score exceeds 640.<br>Members permanently retain on the blockchain only accessible by the mobile application when the member provides their private key.<br>3rd parties who have purchased this information from a member have permanent access to it on their 3rd party systems to the extent explicitly agreed to by the member. (However, the 3rd party has no way to cross reference this private information to the member’s referral code)</td>
+        </tr>
+        <tr>
+          <td>Member demographic information directly provided by the member that viewed on its own cannot be used to identify a member</td>
+          <td>For the benefit of the member (financially and otherwise)</td>
+          <td>Member<br>ImagineBC - for use with aggregation to identify revenue producing opportunities for the member</td>
+          <td>MySQL database (on ImagineBC’s Azure cloud production environment)</td>
+          <td>Through duration of membership </td>
+        </tr>
+        <tr>
+          <td>Public information about a member scraped off social media outlets as requested by a member. A member will have granted ImagineBC access to these sites by proactively connecting with ImagineBC.</td>
+          <td>For the convenience of the member (i.e., allowing the member to populate information on the Service by pulling in information available on a member’s social media accounts)</td>
+          <td>Member<br>ImagineBC - for use with aggregation to identify revenue producing opportunities for the member</td>
+          <td>MySQL database (on ImagineBC’s Azure cloud production environment)</td>
+          <td>Through duration of membership</td>
+        </tr>
+        <tr>
+          <td>Algorithmically derived or statistically derived information about a member<br>ImagineBC may use its AI/ML capabilities to make predictions about members based on information provided by the member. </td>
+          <td>For the benefit of the member (financially and otherwise)</td>
+          <td>ImagineBC for use with aggregation to identify revenue producing opportunities for the member</td>
+          <td>MySQL database (on ImagineBC’s Azure cloud prod. env.)</td>
+          <td>Through duration of membership</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="pp-center">© 2026 ImagineBC - All Rights Reserved.</p>
+
+        </div>
+    </main>
+
+    <footer>
+        <a href="index.html">← Back to imaginebc.net</a>
+    </footer>
+
+</body>
+</html>
